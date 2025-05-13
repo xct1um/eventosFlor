@@ -19,8 +19,7 @@
     top: 0;
     left: 0;
     padding: 20px 50px;
-    z-index: 1000;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  
   }
   
   header nav ul {
@@ -32,9 +31,12 @@
   
   header nav a {
     text-decoration: none;
+<<<<<<< HEAD
     color: #fffdfe;
+=======
+    color: #ffffff;
+>>>>>>> 671a20bd51a91182a62e6eec72649dbfa91f1455
     font-weight: 600;
-    font-size: 1.1rem;
     text-transform: uppercase;
     letter-spacing: 1px;
   }
@@ -45,9 +47,13 @@
   
   /* Sección hero */
   #home {
+<<<<<<< HEAD
     display: flex;
     flex-direction: column; 
     background-image: url('pexels-david-medellin-escobar-1574799-5551631.jpg');
+=======
+    background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url('pexels-david-medellin-escobar-1574799-5551631.jpg');
+>>>>>>> 671a20bd51a91182a62e6eec72649dbfa91f1455
     background-size: cover;
     background-position: center;
     height: 100vh;
