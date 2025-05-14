@@ -10,20 +10,28 @@ header {
   width: 100%;
   top: 0;
   left: 0;
-  padding: 20px 50px;
+  
 }
 
 #contenedor-nav{
   display: flex;
   justify-content: start;
   align-items: center;
-  background-color: rgba(0, 0, 0, 0);
-  list-style: none;
-  gap: 40px;
-  padding-left: 120px;
   flex-direction: row;
+  position: relative;
+  padding: 30px 100px;
+  justify-content: space-between;
 }
 
+.acceso-rapido{
+  display: flex;
+  list-style: none;
+  flex-direction: row;
+  gap: 40px;
+  border-left: 1px solid white;
+  padding-left: 40px;
+  margin-left: 40px;
+}
 
 .svg-container svg {
   width: 40px;
@@ -35,37 +43,110 @@ header nav a {
   color: #fffdfe;
   font-size: 0.9rem;
   letter-spacing: 1px;
+  font-style: bold;
 }
 
 /* Home*/
 #home {
   display: flex;
   flex-direction: column;
-  background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('pexels-david-medellin-escobar-1574799-5551631.jpg');
+  background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('pexels-mastercowley-1128797.jpg');
   background-size: cover;
   background-position: center;
   height: 100vh;
   color: #fff;
-  justify-content: center;
-  padding-left: 210px;
+  padding-left: 170px;
 }
 
+#entitulado{
+  padding-top: 300px;
+}
 #home h1 {
   font-size: 3rem;
-  margin-bottom: 20px;
   font-weight: 700;
-  letter-spacing: 2px;
 }
 
 #home p {
   font-size: 1.2rem;
-  margin-bottom: 0;
 }
 
 #titulo2 {
   padding: 25px;
   text-align: center;
 }
+
+.busqueda {
+  margin-top: 20px;
+  display: flex;
+  gap: 10px;
+  width: 500px;
+  position: relative;
+}
+
+.busqueda input {
+  padding: 15px;
+  border: none;
+  border-radius: 20px;
+  width: 600px;
+  position: relative;
+  padding: 13px 10px 13px 40px;
+  z-index: 1;
+}
+
+#icono-busqueda{
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  position: absolute;
+  z-index: 2;
+}
+
+#icono-busqueda svg{
+  width: 15px;
+  height: 15px;
+}
+#botones-izquierda{
+    display: flex;
+    align-items: center;
+}
+/*Botones Derecha*/
+.botones-derecha {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+#favoritos, #login {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+#favoritos{
+  width: 18px;
+  height: 18px;
+  fill: white;
+}
+#login svg {
+  width: 18px;
+  height: 18px;
+}
+
+
+.botones-derecha .reserva {
+  padding: 12px 30px;
+  background-color: #ffffff28;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  border-radius: 30px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+
 
 #rows {
   height: 60vh;
@@ -109,6 +190,7 @@ header nav a {
   padding-bottom: 30px;
 }
 
+
 .bottom-bt {
   padding: 12px 30px;
   background-color: #ffffff28;
@@ -121,6 +203,7 @@ header nav a {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+
 .bottom-bt:hover {
   background-color: #242424d0;
 }
@@ -129,21 +212,6 @@ header nav a {
   margin-top: 10px;
 }
 
-.boton {
-  display: inline-block;
-  background-color: #0077aa;
-  color: #fff;
-  padding: 12px 40px;
-  border-radius: 50px;
-  text-decoration: none;
-  font-weight: bold;
-  text-transform: uppercase;
-}
-
-.boton:hover {
-  background-color: #005f8a;
-  transition: background-color 0.3s;
-}
 
 #eventos {
   padding: 60px 20px;
@@ -178,20 +246,7 @@ header nav a {
   color: #777;
 }
 
-.evento a {
-  display: block;
-  text-decoration: none;
-  text-align: center;
-  background-color: #0077aa;
-  color: #fff;
-  padding: 10px 0;
-  font-weight: bold;
-  border-radius: 0 0 8px 8px;
-}
 
-.evento a:hover {
-  background-color: #005f8a;
-}
 
 footer {
   text-align: center;
