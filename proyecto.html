@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,95 +8,89 @@
   <link rel="stylesheet" href="proyecto.css">
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
 </head>
-<body>
 
+<body>
   <header>
-    <nav >
-      <div >
+    <!--Navegador-->
+    <nav>
+      <!--Contenedor de área de navegación-->
+      <div id="contenedor-nav">
+        <!--Menú-->
+        <div id="icono-menu">
           <a href="#">
             <div class="svg-container">
-               <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  
-                  <path d="M20 7L4 7" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round"></path> 
-                  <path d="M15 12L4 12" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round"></path> 
-                  <path d="M9 17H4" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round"></path> 
-                </svg>
-             
-            </div>
-            <div class="text-container">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M20 7L4 7" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round"></path>
+                <path d="M15 12L4 12" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round"></path>
+                <path d="M9 17H4" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round"></path>
+              </svg>
             </div>
           </a>
-      
-        
-        
+        </div>
+        <!--Acceso Rápido-->
+        <ul class="acceso-rapido">
+          <li><a href="#home"><span class="letra">Inicio</span></a></li>
+          <li><a href="#eventos"><span class="letra">Eventos</span></a></li>
+          <li><a href="#galeria"><span class="letra">Galería</span></a></li>
+          <li><a href="#contacto"><span class="letra">Contacto</span></a></li>
+        </ul>
       </div>
-      <ul class="menu">
-        <li><a href="#home" ><span class="letra">Inicio</span></a></li>
-        <li><a href="#eventos"><span class="letra">Eventos</span></a></li>
-        <li><a href="#galeria"><span class="letra">Galería</span></a></li>
-        <li><a href="#contacto"><span class="letra">Contacto</span></a></li>
-      </ul>
+
     </nav>
   </header>
-
-  <!-- Sección de bienvenida -->
+  <!--Home-->
   <section id="home">
     <h1>Bienvenidos a los Eventos de Flores</h1>
-    <p >Descubre los festivales de flores más hermosos y las experiencias únicas que ofrecen alrededor del mundo.</p>
+    <p>Descubre los festivales de flores más hermosos y las experiencias únicas que ofrecen alrededor del mundo.</p>
   </section>
 
-  <!-- Sección de eventos -->
-  <section id="eventos">
-    <h2>Próximos Eventos</h2>
-    <div class="evento">
-      <h3>Festival de Cerezos en Japón</h3>
-      <p>Fecha: 1-15 de abril</p>
-      <p>Ubicación: Tokio, Japón</p>
-      <a href="#" class="boton">Más información</a>
+  <!--Eventos Recomendados-->
+  <section id="recommended">
+    <div id="titulo2">
+      <h2>Fresh Picks</h2>
+      <p>Where to start? We've got you covered. These are a few of our favorite events!</p>
     </div>
-    <div class="evento">
-      <h3>Exposición de Orquídeas en Singapur</h3>
-      <p>Fecha: 10-20 de julio</p>
-      <p>Ubicación: Singapur</p>
-      <a href="#" class="boton">Más información</a>
+    <div id="rows">
+      <div class="column">
+        <img src="pexels-tavarruk-1247509-2378136.jpg" alt="Evento 1" class="img">
+        <div class="titulo-evento">
+          <div class="top-text">Top Info</div>
+          <div class="center-text">
+            <h2>Evento 1</h2>
+            <p>Experience the best of the Damai Spa</p>
+          </div>
+          <button class="bottom-bt">More info</button>
+        </div>
+      </div>
+      <div class="column">
+        <img src="pexels-tavarruk-1247509-2378136.jpg" alt="Evento 2" class="img">
+        <div class="titulo-evento">
+          <div class="top-text">Top Info</div>
+          <div class="center-text">
+            <h2>Evento 2</h2>
+            <p>Experience the best of the Damai Spa</p>
+          </div>
+          <button class="bottom-bt">More info</button>
+        </div>
+      </div>
+      <div class="column">
+        <img src="pexels-tavarruk-1247509-2378136.jpg" alt="Evento 3" class="img">
+        <div class="titulo-evento">
+          <div class="top-text">More info</div>
+          <div class="center-text">
+            <h2>Evento 3</h2>
+            <p>Experience the best of the Damai Spa</p>
+          </div>
+          <button class="bottom-bt">More info</button>
+        </div>
+      </div>
     </div>
-    <!-- Agrega más eventos aquí -->
   </section>
 
-  <!-- Sección de galería -->
-  <section id="galeria">
-    <h2>Galería de Eventos</h2>
-    <div class="galeria-imagen">
-      <img src="img1.jpg" alt="Festival de Flores">
-      <img src="img2.jpg" alt="Evento Floral">
-      <!-- Agrega más imágenes -->
-    </div>
-  </section>
-
-  <!-- Sección de sobre nosotros 
-  <section id="nosotros">
-    <h2>Sobre Nosotros</h2>
-    <p>Somos una plataforma dedicada a la organización y promoción de eventos florales a nivel mundial. Nos apasionan las flores y buscamos conectar a los amantes de la naturaleza con los festivales más impresionantes.</p>
-  </section>
--->
-  <!-- Sección de contacto -->
-  <section id="contacto">
-    <h2>Contacto</h2>
-    <form action="#" method="post">
-      <label for="nombre">Nombre:</label>
-      <input type="text" id="nombre" name="nombre" required>
-      <label for="email">Correo electrónico:</label>
-      <input type="email" id="email" name="email" required>
-      <label for="mensaje">Mensaje:</label>
-      <textarea id="mensaje" name="mensaje" required></textarea>
-      <button type="submit" class="boton">Enviar</button>
-    </form>
-  </section>
-
-  <!-- Footer -->
   <footer>
     <p>&copy; 2025 Eventos de Flores. Todos los derechos reservados.</p>
   </footer>
 
 </body>
+
 </html>

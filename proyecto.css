@@ -1,224 +1,202 @@
-/* Reset básico */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  body {
-    font-family: 'Open Sans', sans-serif;
-    line-height: 1.6;
-    color: #333;
-    background-color: #f4f4f4;
-  }
-  
-  /* Encabezado */
-  header {
-    position: fixed;
-    width: 100%;
-    top: 0;
-    left: 0;
-    padding: 20px 50px;
-    z-index: 1000;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0);
-  }
-  header nav{
-    display: flex;
-    justify-content: start;
-    align-items:center;
-    background-color: rgba(0, 0, 0, 0);
-    }
+body {
+  font-family: 'Open Sans', sans-serif;
+  color: #333;
+  background-color: #f4f4f4;
+  height: 100%;
+}
 
-  
-  header nav ul {
-    display: flex;
-    list-style: none;
-    gap: 20px;
-    padding-left: 50px;
-    margin: 0;
-    
-  }
- .svg-container svg {
-    width: 40px;
-    height: 30px;
- }
+header {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  padding: 20px 50px;
+}
+
+#contenedor-nav{
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0);
+  list-style: none;
+  gap: 40px;
+  padding-left: 120px;
+  flex-direction: row;
+}
 
 
-  header nav a {
-    text-decoration: none;
-    color: #fffdfe;
-    font-size: 0.9rem;
-    letter-spacing: 1px;
-  }
-  header nav a:hover {
-    color: #98b1e7;
-  }
-  
-  /* Sección hero */
-  #home {
-    display: flex;
-    flex-direction: column; 
-    background-image:linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('pexels-david-medellin-escobar-1574799-5551631.jpg');
-    background-size: cover;
-    background-position: center;
-    height: 100vh;
-    color: #fff;
-    display: flex;
-    justify-content: center;
-    padding-left: 200px;
-  }
-  
-  #home h1 {
-    font-size: 3rem;
-    margin-bottom: 20px;
-    font-weight: 700;
-    letter-spacing: 2px;
-  }
-  
-  #home p {
-    font-size: 1.2rem;
-    margin-bottom: 0;
-  }
-  
-  .boton {
-    display: inline-block;
-    background-color: #0077aa;
-    color: #fff;
-    padding: 12px 40px;
-    border-radius: 50px;
-    text-decoration: none;
-    font-weight: bold;
-    text-transform: uppercase;
-  }
-  
-  .boton:hover {
-    background-color: #005f8a;
-    transition: background-color 0.3s;
-  }
-  
-  /* Sección eventos */
-  #eventos {
-    padding: 60px 20px;
-    background-color: #fff;
-    text-align: center;
-  }
-  
-  #eventos h2 {
-    font-size: 2.5rem;
-    margin-bottom: 30px;
-    font-weight: 700;
-    color: #222;
-  }
-  
-  .evento {
-    display: inline-block;
-    width: 280px;
-    margin: 15px;
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  .evento img {
-    width: 100%;
-    border-radius: 8px 8px 0 0;
-  }
-  
-  .evento h3 {
-    font-size: 1.5rem;
-    margin: 15px;
-    color: #333;
-  }
-  
-  .evento p {
-    margin: 0 15px;
-    color: #777;
-  }
-  
-  .evento a {
-    display: block;
-    text-decoration: none;
-    text-align: center;
-    background-color: #0077aa;
-    color: #fff;
-    padding: 10px 0;
-    font-weight: bold;
-    border-radius: 0 0 8px 8px;
-  }
-  
-  .evento a:hover {
-    background-color: #005f8a;
-  }
-  
-  /* Sección galería */
-  #galeria {
-    padding: 60px 20px;
-    background-color: #f4f4f4;
-    text-align: center;
-  }
-  
-  #galeria h2 {
-    font-size: 2.5rem;
-    margin-bottom: 30px;
-  }
-  
-  .galeria-imagen {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    flex-wrap: wrap;
-  }
-  
-  .galeria-imagen img {
-    width: 100%;
-    max-width: 350px;
-    height: auto;
-    border-radius: 8px;
-  }
-  
-  /* Sección contacto */
-  #contacto {
-    padding: 60px 20px;
-    background-color: #fff;
-    text-align: center;
-  }
-  
-  form {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    max-width: 500px;
-    margin: 0 auto;
-  }
-  
-  form input, form textarea {
-    padding: 12px;
-    font-size: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    width: 100%;
-  }
-  
-  form button {
-    background-color: #0077aa;
-    color: #fff;
-    padding: 12px;
-    font-size: 1.1rem;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-  }
-  
-  form button:hover {
-    background-color: #005f8a;
-    transition: background-color 0.3s;
-  }
-  
-  /* Footer */
-  footer {
-    text-align: center;
-    padding: 20px;
-    background-color: #333;
-    color: #fff;
-    font-size: 0.9rem;
-  }
+.svg-container svg {
+  width: 40px;
+  height: 30px;
+}
+
+header nav a {
+  text-decoration: none;
+  color: #fffdfe;
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+}
+
+/* Home*/
+#home {
+  display: flex;
+  flex-direction: column;
+  background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('pexels-david-medellin-escobar-1574799-5551631.jpg');
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  color: #fff;
+  justify-content: center;
+  padding-left: 210px;
+}
+
+#home h1 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+#home p {
+  font-size: 1.2rem;
+  margin-bottom: 0;
+}
+
+#titulo2 {
+  padding: 25px;
+  text-align: center;
+}
+
+#rows {
+  height: 60vh;
+  width: 100vw;
+  display: flex;
+  justify-content: space-evenly;
+  padding-top: 20px;
+  padding-bottom: 40px;
+}
+
+.column {
+  flex: 1;
+  max-width: 25%;
+  max-height: 100%;
+  text-align: center;
+  color: white;
+  overflow: hidden;
+  position: relative;
+  object-fit: cover;
+}
+
+.img {
+  width: 100%;
+  height: auto;
+  filter: brightness(75%);
+}
+
+.titulo-evento {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  z-index: 2;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+.bottom-bt {
+  padding: 12px 30px;
+  background-color: #ffffff28;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  margin-bottom: 10px;
+  border-radius: 30px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.bottom-bt:hover {
+  background-color: #242424d0;
+}
+
+.top-text {
+  margin-top: 10px;
+}
+
+.boton {
+  display: inline-block;
+  background-color: #0077aa;
+  color: #fff;
+  padding: 12px 40px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.boton:hover {
+  background-color: #005f8a;
+  transition: background-color 0.3s;
+}
+
+#eventos {
+  padding: 60px 20px;
+  background-color: #fff;
+  text-align: center;
+}
+
+#eventos h2 {
+  font-size: 2.5rem;
+  margin-bottom: 30px;
+  font-weight: 700;
+  color: #222;
+}
+
+.evento {
+  display: inline-block;
+  width: 280px;
+  margin: 15px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.evento h3 {
+  font-size: 1.5rem;
+  margin: 15px;
+  color: #333;
+}
+
+.evento p {
+  margin: 0 15px;
+  color: #777;
+}
+
+.evento a {
+  display: block;
+  text-decoration: none;
+  text-align: center;
+  background-color: #0077aa;
+  color: #fff;
+  padding: 10px 0;
+  font-weight: bold;
+  border-radius: 0 0 8px 8px;
+}
+
+.evento a:hover {
+  background-color: #005f8a;
+}
+
+footer {
+  text-align: center;
+  padding: 20px;
+  background-color: #333;
+  color: #fff;
+  font-size: 0.9rem;
+}
