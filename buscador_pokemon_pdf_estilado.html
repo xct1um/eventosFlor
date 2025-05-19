@@ -1,0 +1,213 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buscador Pokémon + PDF + Estilo</title>
+
+    <!-- Estilos inspirados en los colores de Pokémon -->
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f2f2f2;
+            color: #2c3e50;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #e74c3c; /* Rojo Pokémon */
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+            color: #2980b9; /* Azul Pokémon */
+        }
+
+        select, input {
+            margin-top: 5px;
+            padding: 5px;
+            width: 200px;
+        }
+
+        button {
+            margin-top: 15px;
+            margin-right: 10px;
+            background-color: #f1c40f; /* Amarillo Pokémon */
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            font-weight: bold;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: #f39c12;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            background: #ecf0f1;
+            margin: 5px 0;
+            padding: 8px;
+            border-radius: 4px;
+        }
+
+        #pokemon-results p {
+            color: red;
+        }
+    </style>
+
+    <!-- Cargar jsPDF para exportar PDF -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+    <h1>Buscar Pokémon con Filtros</h1>
+
+    <!-- Controles de filtrado -->
+    <label for="pokemon-type">Selecciona un tipo de Pokémon:</label>
+    <select id="pokemon-type">
+        <option value="">--Selecciona un tipo--</option>
+        <option value="grass">Planta</option>
+        <option value="fire">Fuego</option>
+        <option value="water">Agua</option>
+        <option value="electric">Eléctrico</option>
+        <option value="bug">Bicho</option>
+        <option value="poison">Veneno</option>
+    </select>
+
+    <label for="pokemon-ability">Selecciona una habilidad:</label>
+    <select id="pokemon-ability">
+        <option value="">--Selecciona una habilidad--</option>
+        <option value="overgrow">Overgrow</option>
+        <option value="blaze">Blaze</option>
+        <option value="torrent">Torrent</option>
+    </select>
+
+    <label for="pokemon-genera">Selecciona una generación:</label>
+    <select id="pokemon-genera">
+        <option value="">--Selecciona una generación--</option>
+        <option value="1">Generación 1</option>
+        <option value="2">Generación 2</option>
+        <option value="3">Generación 3</option>
+        <option value="4">Generación 4</option>
+        <option value="5">Generación 5</option>
+        <option value="6">Generación 6</option>
+        <option value="7">Generación 7</option>
+        <option value="8">Generación 8</option>
+    </select>
+
+    <label for="pokemon-name">Buscar por nombre:</label>
+    <input type="text" id="pokemon-name" placeholder="Ej: char" />
+
+    <label for="pokemon-speed">Velocidad mínima:</label>
+    <input type="number" id="pokemon-speed" placeholder="Ej: 70" min="0" />
+
+    <!-- Botones para buscar y exportar -->
+    <button onclick="getPokemon()">Buscar Pokémon</button>
+    <button onclick="exportToPDF()">Exportar a PDF</button>
+
+    <h2>Resultados</h2>
+    <div id="pokemon-results"></div>
+
+    <script>
+        let lastResults = []; // Guardamos los últimos resultados mostrados
+
+        // Buscar Pokémon según los filtros aplicados
+        async function getPokemon() {
+            const type = document.getElementById('pokemon-type').value;
+            const ability = document.getElementById('pokemon-ability').value;
+            const generation = document.getElementById('pokemon-genera').value;
+            const nameFilter = document.getElementById('pokemon-name').value.toLowerCase();
+            const minSpeed = parseInt(document.getElementById('pokemon-speed').value);
+
+            try {
+                const requests = [];
+
+                // Añadimos peticiones según los filtros seleccionados
+                if (type) requests.push(fetch(`https://pokeapi.co/api/v2/type/${type}`).then(r => r.json()));
+                if (ability) requests.push(fetch(`https://pokeapi.co/api/v2/ability/${ability}`).then(r => r.json()));
+                if (generation) requests.push(fetch(`https://pokeapi.co/api/v2/generation/${generation}`).then(r => r.json()));
+
+                const results = await Promise.all(requests);
+
+                // Convertimos los resultados en listas de nombres
+                let nameLists = results.map(data => {
+                    if (data.pokemon) return data.pokemon.map(p => p.pokemon.name);
+                    if (data.pokemon_species) return data.pokemon_species.map(p => p.name);
+                    return [];
+                });
+
+                let baseList = [];
+                if (nameLists.length === 0) {
+                    const res = await fetch('https://pokeapi.co/api/v2/pokemon?limit=100');
+                    const data = await res.json();
+                    baseList = data.results.map(p => p.name);
+                } else {
+                    baseList = nameLists.reduce((acc, list) => acc.filter(name => list.includes(name)));
+                }
+
+                if (nameFilter) {
+                    baseList = baseList.filter(name => name.includes(nameFilter));
+                }
+
+                if (!isNaN(minSpeed)) {
+                    const filteredBySpeed = [];
+                    for (let name of baseList) {
+                        const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`);
+                        const data = await res.json();
+                        const speedStat = data.stats.find(stat => stat.stat.name === 'speed');
+                        if (speedStat && speedStat.base_stat >= minSpeed) {
+                            filteredBySpeed.push(name);
+                        }
+                    }
+                    baseList = filteredBySpeed;
+                }
+
+                displayResults(baseList);
+            } catch (error) {
+                console.error(error);
+                document.getElementById('pokemon-results').innerHTML = `<p style="color:red">${error.message}</p>`;
+            }
+        }
+
+        // Mostrar los resultados en la página
+        function displayResults(pokemonList) {
+            lastResults = pokemonList;
+
+            const resultsDiv = document.getElementById('pokemon-results');
+            if (pokemonList.length === 0) {
+                resultsDiv.innerHTML = `<p>No se encontraron Pokémon con esos filtros.</p>`;
+                return;
+            }
+
+            let html = "<ul>";
+            pokemonList.forEach(name => html += `<li>${name}</li>`);
+            html += "</ul>";
+
+            resultsDiv.innerHTML = html;
+        }
+
+        // Exportar los resultados a PDF usando jsPDF
+        async function exportToPDF() {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+
+            doc.setFontSize(14);
+            doc.text("Lista de Pokémon filtrados", 10, 10);
+
+            lastResults.forEach((name, i) => {
+                doc.text(`- ${name}`, 10, 20 + i * 7);
+            });
+
+            doc.save("pokemon_filtrados.pdf");
+        }
+    </script>
+</body>
+</html>
