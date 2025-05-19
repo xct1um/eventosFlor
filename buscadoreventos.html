@@ -126,9 +126,10 @@
         }
 
 
-        async function buscar(keyword) {
-            const res = await fetch(`https://run.mocky.io/v3/a509c432-f0e2-4db2-a3cf-106391d95bd4?q=${keyword}`);
+        async function buscar() {
+            const res = await fetch(`http://localhost:9003/evento/todos`);
             const data = await res.json();
+            console.log(data);
             return data;
         }
 

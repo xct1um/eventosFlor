@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página de Administrador</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@400..700&family=Lexend:wght@100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Faculty+Glyphic&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="buscadoreventos_styles.css">
+</head>
+
+<body>
+    <header>
+        <div class="container d-flex justify-content-between align-items-center">
+            <div class="footer-logo">
+                <img src="Resources/logo-gray.png" alt="Logo" />
+            </div>
+            <h1>Eventos de Flores</h1>
+            <nav>
+                <a href="proyecto.html">Inicio</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Cambia el color del header al hacer scroll -->
+    <script type="text/javascript">
+        window.addEventListener("scroll", function () {
+            var header = document.querySelector("header");
+            header.classList.toggle("sticky", window.scrollY > 0);
+        });
+    </script>
+    <div class="container my-5">
+        <h2 class="mb-4">Listado de Eventos</h2>
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover align-middle text-center">
+                <thead class="table-dark">
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Aforo Máximo</th>
+                        <th>Precio (€)</th>
+                        <th>Estado</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="tabla-eventos">
+                    <!-- Contenido dinámico aquí -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        async function buscar() {
+            const res = await fetch(`http://localhost:9003/evento/todos`);
+            const data = await res.json();
+            console.log("Eventos cargados:", data);
+            return data;
+        }
+    
+        function renderBusqueda(resultadosJSON) {
+            const tabla = document.getElementById("tabla-eventos");
+            tabla.innerHTML = "";
+    
+            resultadosJSON.forEach(evento => {
+                const fila = document.createElement("tr");
+                fila.innerHTML = `
+                    <td>${evento.idEvento}</td>
+                    <td>${evento.nombre}</td>
+                    <td>${evento.aforoMaximo}</td>
+                    <td>${evento.precio.toFixed(2)}</td>
+                    <td>${evento.estado}</td>
+                    <td>
+                        <button class="btn btn-sm btn-primary me-1">Ver Detalle</button>
+                        <button class="btn btn-sm btn-warning me-1">Editar</button>
+                        <button class="btn btn-sm btn-danger me-1">Eliminar</button>
+                        <button class="btn btn-sm btn-info text-white">Ver Reservas</button>
+                    </td>
+                `;
+                tabla.appendChild(fila);
+            });
+        }
+    
+        document.addEventListener("DOMContentLoaded", async () => {
+            const data = await buscar();
+            renderBusqueda(data);
+        });
+    </script>
+</body>
+
+</html>
