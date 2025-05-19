@@ -28,6 +28,84 @@
             </nav>
         </div>
     </header>
+    <div class="form-container">
+        <h2>Dar de Alta un Evento</h2>
+        <form id="DarAlta">
+          <div>
+            <label for="nombre">Nombre del Evento:</label>
+            <input type="text" id="nombre" required>
+          </div>
+    
+          <div>
+            <label for="tipo">Tipo de Flor (ID):</label>
+            <input type="number" id="tipo" required>
+          </div>
+    
+          <div class="full-width">
+            <label for="descripcion">Descripción:</label>
+            <textarea id="descripcion" rows="3" required></textarea>
+          </div>
+    
+          <div>
+            <label for="direccion">Dirección:</label>
+            <input type="text" id="direccion" required>
+          </div>
+    
+          <div>
+            <label for="fechaAlta">Fecha de Alta:</label>
+            <input type="date" id="fechaAlta" required>
+          </div>
+    
+          <div>
+            <label for="fechaInicio">Fecha de Inicio:</label>
+            <input type="date" id="fechaInicio" required>
+          </div>
+    
+          <div>
+            <label for="duracion">Duración:</label>
+            <input type="number" id="duracion" required>
+          </div>
+    
+          <div>
+            <label for="unidadDuracion">Unidad de Duración:</label>
+            <select id="unidadDuracion" required>
+              <option value="HORAS">Horas</option>
+              <option value="DIAS">Días</option>
+              <option value="MESES">Meses</option>
+            </select>
+          </div>
+    
+          <div>
+            <label for="aforoMaximo">Aforo Máximo:</label>
+            <input type="number" id="aforoMaximo" required>
+          </div>
+    
+          <div>
+            <label for="precio">Precio (€):</label>
+            <input type="number" step="0.01" id="precio" required>
+          </div>
+    
+          <div>
+            <label for="estado">Estado:</label>
+            <select id="estado" required>
+              <option value="ACTIVO">ACTIVO</option>
+              <option value="INACTIVO">INACTIVO</option>
+            </select>
+          </div>
+    
+          <div>
+            <label for="destacado">Destacado:</label>
+            <select id="destacado" required>
+              <option value="S">S</option>
+              <option value="M">M</option>
+            </select>
+          </div>
+    
+          <button type="submit">Guardar Evento</button>
+        </form>
+        <div id="mensaje"></div>
+      </div>
+    </div>
 
     <!-- Cambia el color del header al hacer scroll -->
     <script type="text/javascript">
@@ -36,7 +114,7 @@
             header.classList.toggle("sticky", window.scrollY > 0);
         });
     </script>
-    <div class="container my-5">
+    <div class="container" style="margin-top: 5em;">
         <h2 class="mb-4">Listado de Eventos</h2>
         <div class="table-responsive">
             <table class="table table-bordered table-hover align-middle text-center">
@@ -51,48 +129,12 @@
                     </tr>
                 </thead>
                 <tbody id="tabla-eventos">
-                    <!-- Contenido dinámico aquí -->
+                    
                 </tbody>
             </table>
         </div>
     </div>
-
-    <script type="text/javascript">
-        async function buscar() {
-            const res = await fetch(`http://localhost:9003/evento/todos`);
-            const data = await res.json();
-            console.log("Eventos cargados:", data);
-            return data;
-        }
-    
-        function renderBusqueda(resultadosJSON) {
-            const tabla = document.getElementById("tabla-eventos");
-            tabla.innerHTML = "";
-    
-            resultadosJSON.forEach(evento => {
-                const fila = document.createElement("tr");
-                fila.innerHTML = `
-                    <td>${evento.idEvento}</td>
-                    <td>${evento.nombre}</td>
-                    <td>${evento.aforoMaximo}</td>
-                    <td>${evento.precio.toFixed(2)}</td>
-                    <td>${evento.estado}</td>
-                    <td>
-                        <button class="btn btn-sm btn-primary me-1">Ver Detalle</button>
-                        <button class="btn btn-sm btn-warning me-1">Editar</button>
-                        <button class="btn btn-sm btn-danger me-1">Eliminar</button>
-                        <button class="btn btn-sm btn-info text-white">Ver Reservas</button>
-                    </td>
-                `;
-                tabla.appendChild(fila);
-            });
-        }
-    
-        document.addEventListener("DOMContentLoaded", async () => {
-            const data = await buscar();
-            renderBusqueda(data);
-        });
-    </script>
+    <script src="main.js"></script>
 </body>
 
 </html>
