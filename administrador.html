@@ -142,6 +142,100 @@
     
   </div>
 
+  <!-- Modal de edición -->
+<div id="modal-editar" class="modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background-color: rgba(0,0,0,0.5); justify-content:center; align-items:center;">
+  <div style="background:white; padding:20px; border-radius:10px; max-width:500px; width:100%;">
+    <h4>Editar Evento</h4>
+    <form id="formEditar">
+      <input type="hidden" id="edit-id" class="formEditar"/>
+
+
+      <div class="mb-2">
+        <label>Nombre:</label>
+        <input type="text" id="edit-nombre" class="formEditar"/>
+      </div>
+
+
+      <div>
+        <label for="tipo">Tipo de Flor (ID):</label>
+        <input type="number" id="edit-tipo" class="formEditar">
+      </div>
+
+
+      <div class="mb-2">
+        <label>Aforo Máximo:</label>
+        <input type="number" id="edit-aforo" class="formEditar" />
+      </div>
+
+
+      <div class="mb-2">
+        <label>Precio:</label>
+        <input type="number" step="0.01" id="edit-precio" class="formEditar"/>
+      </div>
+
+
+      <div class="mb-2">
+        <label>Estado:</label>
+        <select id="edit-estado" class="formEditar" >
+          <option value="ACTIVO">ACTIVO</option>
+          <option value="INACTIVO">INACTIVO</option>
+        </select>
+      </div>
+
+
+      <div>
+        <label for="destacado">Destacado:</label>
+        <select id="edit-destacado" class="formEditar">
+          <option value="S">S</option>
+          <option value="M">M</option>
+        </select>
+      </div>
+
+
+      <div>
+        <label for="fechaInicio">Fecha de Inicio:</label>
+        <input type="date" id="edit-fechaInicio" class="formEditar">
+      </div>
+
+
+      <div>
+        <label for="duracion">Duración:</label>
+        <input type="number" id="edit-duracion" class="formEditar">
+      </div>
+
+
+      <div>
+        <label for="unidadDuracion">Unidad de Duración:</label>
+        <select id="edit-unidadDuracion" class="formEditar">
+          <option value="HORAS">Horas</option>
+          <option value="DIAS">Días</option>
+          <option value="MESES">Meses</option>
+        </select>
+      </div>
+
+
+      <div>
+        <label for="direccion">Dirección:</label>
+        <input type="text" id="edit-direccion" class="formEditar">
+      </div>
+
+
+      <div class="full-width">
+        <label for="descripcion">Descripción:</label>
+        <textarea id="edit-descripcion" rows="3" class="formEditar"></textarea>
+      </div>
+
+
+      <div class="text-end">
+        <button type="button" id="cancelar-edicion" class="btn btn-secondary">Cancelar</button>
+        <button type="submit" class="btn btn-primary">Guardar</button>
+      </div>
+
+
+    </form>
+  </div>
+</div>
+
     <script src="main.js"></script>
 </body>
 

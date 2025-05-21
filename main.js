@@ -20,12 +20,20 @@ function renderBusqueda(resultadosJSON) {
             <td>${evento.estado}</td>
             <td>
                 <button class="btn btn-sm btn-light border me-1" onclick="verDetalle(${evento.idEvento})")>Ver Detalle</button>
-                <button class="btn btn-sm btn-light border me-1" )">Editar</button>
+                <button class="btn btn-sm btn-light border me-1 editar-btn" data-id="${evento.idEvento}">Editar</button>
                 <button class="btn btn-sm btn-light border me-1" onclick="eliminarEvento(${evento.idEvento})">Eliminar</button>
                 <button class="btn btn-sm btn-light border">Ver Reservas</button>
             </td>
         `;
     tabla.appendChild(fila);
+  });
+
+  document.querySelectorAll(".editar-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const id = btn.getAttribute("data-id");
+      const evento = resultadosJSON.find(e => e.idEvento == id);
+      mostrarModalEdicion(evento);
+    });
   });
 }
 
@@ -49,6 +57,10 @@ document.getElementById("DarAlta").addEventListener("submit", async function (e)
     fechaInicio: document.getElementById("fechaInicio").value,
     aforoMaximo: parseInt(document.getElementById("aforoMaximo").value),
     precio: parseFloat(document.getElementById("precio").value),
+    direccion: document.getElementById("direccion").value,
+    duracion: document.getElementById("duracion").value,
+    unidadDuracion: document.getElementById("unidadDuracion").value,
+    destacado: document.getElementById("destacado").value,
     estado: document.getElementById("estado").value,
     tipo: {
       idTipo: parseInt(document.getElementById("tipo").value)
@@ -99,5 +111,80 @@ async function verDetalle(idEvento) {
     }
 };
 
+/*Script para editar*/
+function mostrarModalEdicion(evento) {
+  document.getElementById("modal-editar").style.display = "flex";
+
+
+  // 填充数据
+  document.getElementById("edit-id").value = evento.idEvento;
+  document.getElementById("edit-nombre").value = evento.nombre;
+ 
+  //puede ser no funcion
+  document.getElementById("edit-tipo").value = evento.tipo;
+  document.getElementById("edit-aforo").value = evento.aforoMaximo;
+  document.getElementById("edit-precio").value = evento.precio;
+  document.getElementById("edit-estado").value = evento.estado;
+  document.getElementById("edit-destacado").value = evento.destacado;
+  document.getElementById("edit-fechaInicio").value = evento.fechaInicio;
+  document.getElementById("edit-duracion").value = evento.duracion;
+  document.getElementById("edit-unidadDuracion").value = evento.unidadDuracion;
+  document.getElementById("edit-direccion").value = evento.direccion;
+  document.getElementById("edit-descripcion").value = evento.descripcion;
+}
+
+
+// 关闭弹窗
+document.getElementById("cancelar-edicion").addEventListener("click", () => {
+  document.getElementById("modal-editar").style.display = "none";
+});
+
+
+// 提交编辑表单
+document.getElementById("formEditar").addEventListener("submit", async function (e) {
+  e.preventDefault();
+
+
+  const idEvento = document.getElementById("edit-id").value;
+  const evento = {
+    idEvento: parseInt(idEvento),
+    nombre: document.getElementById("edit-nombre").value,
+    descripcion: document.getElementById("edit-descripcion").value,
+    fechaInicio: document.getElementById("edit-fechaInicio").value,
+    aforoMaximo: parseInt(document.getElementById("edit-aforo").value),
+    precio: parseFloat(document.getElementById("edit-precio").value),
+    direccion: document.getElementById("edit-direccion").value,
+    duracion: document.getElementById("edit-duracion").value,
+    unidadDuracion: document.getElementById("edit-unidadDuracion").value,
+    destacado: document.getElementById("edit-destacado").value,
+    estado: document.getElementById("edit-estado").value,
+    tipo: {
+      idTipo: parseInt(document.getElementById("edit-tipo").value)
+    }
+  };
+
+
+  const res = await fetch(`http://localhost:9003/evento/update`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(evento)
+  });
+
+
+  if (res.ok) {
+    // 关闭弹窗并刷新页面数据
+    document.getElementById("modal-editar").style.display = "none";
+   
+    const eventos = await buscar();//再次从后端获取最新列表
+      renderBusqueda(eventos);//显示在页面上
+     
+    location.reload(); // 或者重新调用 buscar() + renderBusqueda()
+   
+  } else {
+    alert("Error al actualizar el evento.");
+  }
+});
 
 
