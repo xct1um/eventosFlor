@@ -120,4 +120,6 @@ async function verDetalle(idEvento) {
 
 /*Script para editar*/
 
+/**/
+
 
