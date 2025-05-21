@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 
 /*Script para comportamiento de Header*/
-/*const header = document.getElementById('header');
+const header = document.getElementById('header');
 const home = document.getElementById('home');
 const homeHeight = home.offsetHeight; //error
 
@@ -53,7 +53,7 @@ window.addEventListener('scroll', () => {
     header.classList.add('out');
     header.classList.remove('blur');
   }
-});*/
+});
 
 
 /*Script para Formulario Dar de Alta*/
