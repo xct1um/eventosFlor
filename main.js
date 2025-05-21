@@ -55,10 +55,11 @@ document.getElementById("DarAlta").addEventListener("submit", async function (e)
 
     descripcion: document.getElementById("descripcion").value,
     fechaInicio: document.getElementById("fechaInicio").value,
+    fechaALta: document.getElementById("fechaAlta").value,
     aforoMaximo: parseInt(document.getElementById("aforoMaximo").value),
     precio: parseFloat(document.getElementById("precio").value),
     direccion: document.getElementById("direccion").value,
-    duracion: document.getElementById("duracion").value,
+    duracion: parseInt(document.getElementById("duracion").value),
     unidadDuracion: document.getElementById("unidadDuracion").value,
     destacado: document.getElementById("destacado").value,
     estado: document.getElementById("estado").value,
@@ -74,7 +75,7 @@ document.getElementById("DarAlta").addEventListener("submit", async function (e)
     //estilo json
     body: JSON.stringify(evento)
   });
-
+  if(res.ok){
   const data = await res.json();
   document.getElementById("mensaje").innerHTML = `<p style="color: green;">Evento creado con ID ${data.idEvento}</p>`;
 
@@ -83,6 +84,7 @@ document.getElementById("DarAlta").addEventListener("submit", async function (e)
   // 刷新页面或重新获取数据 Recargar página
   const eventos = await buscar();
   renderBusqueda(eventos);
+  }
 });
 
 /*Script para Eliminar*/
@@ -119,9 +121,7 @@ function mostrarModalEdicion(evento) {
   // 填充数据
   document.getElementById("edit-id").value = evento.idEvento;
   document.getElementById("edit-nombre").value = evento.nombre;
- 
-  //puede ser no funcion
-  document.getElementById("edit-tipo").value = evento.tipo;
+  document.getElementById("edit-tipo").value = evento.tipo.idTipo;
   document.getElementById("edit-aforo").value = evento.aforoMaximo;
   document.getElementById("edit-precio").value = evento.precio;
   document.getElementById("edit-estado").value = evento.estado;
@@ -131,6 +131,7 @@ function mostrarModalEdicion(evento) {
   document.getElementById("edit-unidadDuracion").value = evento.unidadDuracion;
   document.getElementById("edit-direccion").value = evento.direccion;
   document.getElementById("edit-descripcion").value = evento.descripcion;
+  
 }
 
 
@@ -154,7 +155,7 @@ document.getElementById("formEditar").addEventListener("submit", async function 
     aforoMaximo: parseInt(document.getElementById("edit-aforo").value),
     precio: parseFloat(document.getElementById("edit-precio").value),
     direccion: document.getElementById("edit-direccion").value,
-    duracion: document.getElementById("edit-duracion").value,
+    duracion: parseInt(document.getElementById("edit-duracion").value),
     unidadDuracion: document.getElementById("edit-unidadDuracion").value,
     destacado: document.getElementById("edit-destacado").value,
     estado: document.getElementById("edit-estado").value,
@@ -180,7 +181,7 @@ document.getElementById("formEditar").addEventListener("submit", async function 
     const eventos = await buscar();//再次从后端获取最新列表
       renderBusqueda(eventos);//显示在页面上
      
-    location.reload(); // 或者重新调用 buscar() + renderBusqueda()
+    //location.reload(); // 或者重新调用 buscar() + renderBusqueda()
    
   } else {
     alert("Error al actualizar el evento.");
