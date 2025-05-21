@@ -32,31 +32,13 @@ function renderBusqueda(resultadosJSON) {
 document.addEventListener("DOMContentLoaded", async () => {
   const data = await buscar();
   renderBusqueda(data);
-});
-
-
-
-/*Script para comportamiento de Header*/
-const header = document.getElementById('header');
-const home = document.getElementById('home');
-const homeHeight = home.offsetHeight; //error
-
-window.addEventListener('scroll', () => {
-  const scrollY = window.scrollY;
-
-  if (scrollY === 0) {
-    header.classList.remove('blur', 'out');
-  } else if (scrollY > 0 && scrollY <= homeHeight) {
-    header.classList.add('blur');
-    header.classList.remove('out');
-  } else if (scrollY > homeHeight) {
-    header.classList.add('out');
-    header.classList.remove('blur');
-  }
+  const hoy = new Date().toISOString().split("T")[0];
+  document.getElementById("fechaAlta").value = hoy;
 });
 
 
 /*Script para Formulario Dar de Alta*/
+
 document.getElementById("DarAlta").addEventListener("submit", async function (e) {
   e.preventDefault();
 
@@ -86,7 +68,7 @@ document.getElementById("DarAlta").addEventListener("submit", async function (e)
 
   // document.getElementById("formEvento").reset();
 
-  // 刷新页面或重新获取数据
+  // 刷新页面或重新获取数据 Recargar página
   const eventos = await buscar();
   renderBusqueda(eventos);
 });
@@ -106,7 +88,7 @@ async function eliminarEvento(idEvento) {
     } 
 };
 
-/*Script para ver datalle*/
+/*Script para ver detalle*/
 async function verDetalle(idEvento) {
     const res = await fetch(`http://localhost:9003/evento/uno/${idEvento}`);
     if (res.ok) {
@@ -117,10 +99,5 @@ async function verDetalle(idEvento) {
     }
 };
 
-/*Script para editar*/
-
-/**/
-
-/** */
 
 
