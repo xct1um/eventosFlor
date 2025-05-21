@@ -122,4 +122,6 @@ async function verDetalle(idEvento) {
 
 /**/
 
+/** */
+
 
