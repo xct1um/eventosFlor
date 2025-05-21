@@ -22,7 +22,7 @@ function renderBusqueda(resultadosJSON) {
                 <button class="btn btn-sm btn-light border me-1" onclick="verDetalle(${evento.idEvento})")>Ver Detalle</button>
                 <button class="btn btn-sm btn-light border me-1 editar-btn" data-id="${evento.idEvento}">Editar</button>
                 <button class="btn btn-sm btn-light border me-1" onclick="eliminarEvento(${evento.idEvento})">Eliminar</button>
-                <button class="btn btn-sm btn-light border">Ver Reservas</button>
+                <button class="btn btn-sm btn-light border" onclick="verReservasPorEvento(${evento.idEvento})">Ver Reservas</button>
             </td>
         `;
     tabla.appendChild(fila);
@@ -188,3 +188,67 @@ document.getElementById("formEditar").addEventListener("submit", async function 
 });
 
 
+/*Script para ver Reservas por Evento */
+
+function verReservasPorEvento(idEvento) {
+  fetch(`http://localhost:9003/reserva/evento/${idEvento}`)
+      .then(response => {
+          if (!response.ok) {
+              throw new Error("Error al cargar reservas");
+          }
+          return response.json();
+      })
+      .then(reservas => {
+          mostrarReservasEnModal(reservas);
+          abrirModalReservas();
+      })
+      .catch(error => {
+          console.error("Error al obtener las reservas del evento:", error);
+          document.getElementById("contenido-reservas").innerHTML = "<p>Error al cargar reservas.</p>";
+          abrirModalReservas();
+      });
+}
+
+function mostrarReservasEnModal(reservas) {
+  const contenedor = document.getElementById("contenido-reservas");
+  contenedor.innerHTML = "";
+
+  if (reservas.length === 0) {
+      contenedor.innerHTML = "<p>No hay reservas para este evento.</p>";
+      return;
+  }
+
+  const tabla = document.createElement("table");
+  tabla.classList.add("table", "table-striped");
+  tabla.innerHTML = `
+      <thead>
+          <tr>
+              <th>ID</th>
+              <th>Usuario</th>
+              <th>Cantidad</th>
+              <th>Precio Venta</th>
+              <th>Observaciones</th>
+          </tr>
+      </thead>
+      <tbody>
+          ${reservas.map(r => `
+              <tr>
+                  <td>${r.idReserva}</td>
+                  <td>${r.usuario.nombre}</td>
+                  <td>${r.cantidad}</td>
+                  <td>${r.precioVenta} €</td>
+                  <td>${r.observaciones || ""}</td>
+              </tr>
+          `).join("")}
+      </tbody>
+  `;
+  contenedor.appendChild(tabla);
+}
+
+function abrirModalReservas() {
+  document.getElementById("modal-reservas").style.display = "flex";
+}
+
+function cerrarModalReservas() {
+  document.getElementById("modal-reservas").style.display = "none";
+}
