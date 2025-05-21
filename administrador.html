@@ -69,9 +69,9 @@
           <div>
             <label for="unidadDuracion">Unidad de Duración:</label>
             <select id="unidadDuracion" required>
-              <option value="HORAS">Horas</option>
-              <option value="DIAS">Días</option>
-              <option value="MESES">Meses</option>
+              <option value="HORAS">HORAS</option>
+              <option value="DIAS">DÍAS</option>
+              <option value="MESES">MESES</option>
             </select>
           </div>
     
@@ -89,7 +89,8 @@
             <label for="estado">Estado:</label>
             <select id="estado" required>
               <option value="ACTIVO">ACTIVO</option>
-              <option value="INACTIVO">INACTIVO</option>
+              <option value="TERMINADO">TERMINADO</option>
+              <option value="CANCELADO">CANCELADO</option>
             </select>
           </div>
     
@@ -97,7 +98,7 @@
             <label for="destacado">Destacado:</label>
             <select id="destacado" required>
               <option value="S">S</option>
-              <option value="M">M</option>
+              <option value="N">N</option>
             </select>
           </div>
     
@@ -178,7 +179,8 @@
         <label>Estado:</label>
         <select id="edit-estado" class="formEditar" >
           <option value="ACTIVO">ACTIVO</option>
-          <option value="INACTIVO">INACTIVO</option>
+          <option value="TERMINADO">TERMINADO</option>
+          <option value="CANCELADO">CANCELADO</option>
         </select>
       </div>
 
@@ -187,7 +189,7 @@
         <label for="destacado">Destacado:</label>
         <select id="edit-destacado" class="formEditar">
           <option value="S">S</option>
-          <option value="M">M</option>
+          <option value="N">N</option>
         </select>
       </div>
 
@@ -207,9 +209,9 @@
       <div>
         <label for="unidadDuracion">Unidad de Duración:</label>
         <select id="edit-unidadDuracion" class="formEditar">
-          <option value="HORAS">Horas</option>
-          <option value="DIAS">Días</option>
-          <option value="MESES">Meses</option>
+          <option value="HORAS">HORAS</option>
+          <option value="DIAS">DÍAS</option>
+          <option value="MESES">MESES</option>
         </select>
       </div>
 
@@ -227,10 +229,9 @@
 
 
       <div class="text-end">
-        <button type="button" id="cancelar-edicion" class="btn btn-secondary">Cancelar</button>
-        <button type="submit" class="btn btn-primary">Guardar</button>
+        <button type="button" id="cancelar-edicion" class="btn btn-secondary"  type="button" id="cancelar-edicion" >Cancelar</button>
+        <button type="submit" class="btn btn-primary" >Guardar</button>
       </div>
-
 
     </form>
   </div>
