@@ -38,15 +38,15 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 
 /*Script para Formulario Dar de Alta*/
-
+/*Falta agregar validaciones de campos*/
 document.getElementById("DarAlta").addEventListener("submit", async function (e) {
   e.preventDefault();
 
   const evento = {
     nombre: document.getElementById("nombre").value,
+
     descripcion: document.getElementById("descripcion").value,
     fechaInicio: document.getElementById("fechaInicio").value,
-    //fechaAlta: document.getElementById("fechaAlta").now,
     aforoMaximo: parseInt(document.getElementById("aforoMaximo").value),
     precio: parseFloat(document.getElementById("precio").value),
     estado: document.getElementById("estado").value,
