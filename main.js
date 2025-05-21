@@ -27,7 +27,6 @@ function renderBusqueda(resultadosJSON) {
         `;
     tabla.appendChild(fila);
   });
-
 }
 
 document.addEventListener("DOMContentLoaded", async () => {
