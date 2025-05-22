@@ -46,7 +46,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 
 /*Script para Formulario Dar de Alta*/
-/*Falta agregar validaciones de campos*/
+/*Falta agregar validaciones de campossssssssssssssssss*/
 document.getElementById("DarAlta").addEventListener("submit", async function (e) {
   e.preventDefault();
 
