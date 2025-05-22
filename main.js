@@ -79,7 +79,7 @@ document.getElementById("DarAlta").addEventListener("submit", async function (e)
   const data = await res.json();
   document.getElementById("mensaje").innerHTML = `<p style="color: green;">Evento creado con ID ${data.idEvento}</p>`;
 
-  // document.getElementById("formEvento").reset();
+  // document.getElementById("Daralta").reset();
 
   // 刷新页面或重新获取数据 Recargar página
   const eventos = await buscar();
@@ -87,31 +87,34 @@ document.getElementById("DarAlta").addEventListener("submit", async function (e)
   }
 });
 
-/*Script para Eliminar*/
-async function eliminarEvento(idEvento) {
-    const res = await fetch(`http://localhost:9003/evento/eliminar/${idEvento}`, {
-      method: "DELETE",
-    });
-
-    if (res.ok) {
-      alert(`Evento ${idEvento} eliminado exitosamente.`);
-
-      // 刷新页面或重新获取数据
-      const eventos = await buscar();
-      renderBusqueda(eventos);
-    } 
-};
 
 /*Script para ver detalle*/
 async function verDetalle(idEvento) {
-    const res = await fetch(`http://localhost:9003/evento/uno/${idEvento}`);
-    if (res.ok) {
-      const evento = await res.json();  //获取返回的数据
-      //sale pantalla y los datos
-      alert(`ID: ${evento.idEvento}\nNombre: ${evento.nombre}\nDescripción: ${evento.descripcion}\nFecha de Inicio: ${evento.fechaInicio}\nAforo Máximo: ${evento.aforoMaximo}\nPrecio: ${evento.precio.toFixed(2)}\nEstado: ${evento.estado}`);
+  const res = await fetch(`http://localhost:9003/evento/uno/${idEvento}`);
+  if (res.ok) {
+    const evento = await res.json();  //获取返回的数据
+    //sale pantalla y los datos
+    const modal =  document.getElementById("modal-detalle");
+    const contenido = document.getElementById("contenido-detalle");
 
-    }
+    contenido.innerHTML = `
+      <strong>ID:</strong> ${evento.idEvento}<br>
+      <strong>Nombre:</strong> ${evento.nombre}<br>
+      <strong>Descripción:</strong> ${evento.descripcion}<br>
+      <strong>Fecha de Inicio:</strong> ${evento.fechaInicio}<br>
+      <strong>Aforo Máximo:</strong> ${evento.aforoMaximo}<br>
+      <strong>Precio:</strong> ${evento.precio.toFixed(2)}<br>
+      <strong>Estado:</strong> ${evento.estado}
+    `;
+    modal.style.display = "flex";
+
+  }
 };
+
+function cerrarModalDetalle() {
+document.getElementById("modal-detalle").style.display = "none";
+}
+
 
 /*Script para editar*/
 function mostrarModalEdicion(evento) {
@@ -188,6 +191,42 @@ document.getElementById("formEditar").addEventListener("submit", async function 
   }
 });
 
+
+/* Script para Eliminar */
+async function eliminarEvento(idEvento) {
+  const res = await fetch(`http://localhost:9003/evento/eliminar/${idEvento}`, {
+    method: "DELETE",
+  });
+
+  // Verificamos si la respuesta fue exitosa
+  if (res.ok) {
+      const result = await res.json(); // Obtener el JSON de la respuesta
+
+      // Si la respuesta indica éxito, mostramos el mensaje de eliminación
+      if (result === 1) {
+          const modal = document.getElementById("modal-Eliminar");
+          const contenido = document.getElementById("contenido-eliminar");
+          contenido.innerHTML = `ID <strong>${idEvento}</strong> eliminado exitosamente. <br>`;
+          modal.style.display = "flex";
+
+          // Refrescamos la lista de eventos
+          const eventos = await buscar();
+          renderBusqueda(eventos);
+
+      } else if (result === 0) {
+          // Si no se puede eliminar por la reserva, mostramos el mensaje de error
+          alert("No se puede eliminar, porque tiene una reserva.");
+      } else {
+          // Si hubo algún otro error
+          alert("Hubo un error al intentar eliminar el evento.");
+      }
+  } 
+}
+
+
+function AceptoModalEliminar() {
+  document.getElementById("modal-Eliminar").style.display = "none";
+  }
 
 /*Script para ver Reservas por Evento */
 
