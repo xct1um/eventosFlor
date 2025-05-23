@@ -102,6 +102,7 @@ async function verDetalle(idEvento) {
       <strong>Nombre:</strong> ${evento.nombre}<br>
       <strong>Descripción:</strong> ${evento.descripcion}<br>
       <strong>Fecha de Inicio:</strong> ${evento.fechaInicio}<br>
+      <strong>Direccion:</strong> ${evento.direccion}<br>
       <strong>Aforo Máximo:</strong> ${evento.aforoMaximo}<br>
       <strong>Precio:</strong> ${evento.precio.toFixed(2)}<br>
       <strong>Estado:</strong> ${evento.estado}
