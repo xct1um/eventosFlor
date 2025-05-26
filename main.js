@@ -293,3 +293,11 @@ function abrirModalReservas() {
 function cerrarModalReservas() {
   document.getElementById("modal-reservas").style.display = "none";
 }
+/*Script Cerrar Sesión*/
+function cerrar(){
+  /*const res = await fetch(`http://localhost:9003/usuario/cerrar`,{
+    method: "POST",
+  });*/
+  localStorage.removeItem('admin');
+  window.location.href = 'proyecto.html';
+}
