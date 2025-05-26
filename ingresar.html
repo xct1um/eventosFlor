@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unique Pricing Plans</title>
+    <link rel="stylesheet" href="ingresar_styles.css">
+    <style>
+
+    </style>
+</head>
+
+<body class="unique-body">
+    <div class="unique-container">
+        <div class="unique-toggle-wrapper">
+            <div class="unique-toggle">
+                <div class="unique-tab unique-tab-active" data-target="client">Cliente</div>
+                <div class="unique-tab" data-target="admin">Administrador</div>
+                <div class="unique-slider"></div>
+            </div>
+        </div>
+
+        <div class="unique-plans-container unique-plans-visible unique-client-plans" id="client-plans">
+            <div class="bloom-container">
+                <div class="bloom-welcome">
+                    <div class="bloom-pinkbox">
+                        <div class="bloom-signup bloom-nodisplay">
+                            <h1 class="bloom-heading">register</h1>
+                            <form class="bloom-form" autocomplete="off">
+                                <input type="text" placeholder="username">
+                                <input type="email" placeholder="email">
+                                <input type="password" placeholder="password">
+                                <input type="password" placeholder="confirm password">
+                                <button class="bloom-button bloom-submit">create account</button>
+                            </form>
+                        </div>
+                        <div class="bloom-signin">
+                            <h1 class="bloom-heading">Sign in</h1>
+                            <form class="bloom-form bloom-more-padding" autocomplete="off">
+                                <input type="text" placeholder="username">
+                                <input type="password" placeholder="password">
+                                <button class="bloom-button bloom-submit">login</button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="bloom-leftbox">
+                        <h2 class="bloom-title"><span>BLOOM</span>&<br>BOUQUET</h2>
+                        <p class="bloom-desc">pick your perfect <span>bouquet</span></p>
+                        <img class="bloom-flower bloom-smaller" src="https://image.ibb.co/d5X6pn/1357d638624297b.jpg" alt="flower" border="0">
+                        <p class="bloom-account">have an account?</p>
+                        <button class="bloom-button" id="bloom-signin">login</button>
+                    </div>
+                    <div class="bloom-rightbox">
+                        <h2 class="bloom-title"><span>BLOOM</span>&<br>BOUQUET</h2>
+                        <p class="bloom-desc">pick your perfect <span>bouquet</span></p>
+                        <img class="bloom-flower" src="https://preview.ibb.co/jvu2Un/0057c1c1bab51a0.jpg" alt="flower"/>
+                        <p class="bloom-account">don't have an account?</p>
+                        <button class="bloom-button" id="bloom-signup">sign up</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="unique-plans-container unique-admin-plans" id="admin-plans">
+        <div class="bloom-container">
+            <div class="bloom-welcome">
+                <div class="bloom-pinkbox">
+                    <div class="bloom-signup bloom-nodisplay">
+                        <h1 class="bloom-heading">register</h1>
+                        <form class="bloom-form" autocomplete="off">
+                            <input type="text" placeholder="username">
+                            <input type="email" placeholder="email">
+                            <input type="password" placeholder="password">
+                            <input type="password" placeholder="confirm password">
+                            <button class="bloom-button bloom-submit">create account</button>
+                        </form>
+                    </div>
+                    <div class="bloom-signin">
+                        <h1 class="bloom-heading">Sign in</h1>
+                        <form class="bloom-form bloom-more-padding" autocomplete="off">
+                            <input type="text" placeholder="username">
+                            <input type="password" placeholder="password">
+                            <button class="bloom-button bloom-submit">login</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="bloom-leftbox">
+                    <h2 class="bloom-title"><span>BLOOM</span>&<br>BOUQUET</h2>
+                    <p class="bloom-desc">pick your perfect <span>bouquet</span></p>
+                    <img class="bloom-flower bloom-smaller" src="https://image.ibb.co/d5X6pn/1357d638624297b.jpg" alt="flower" border="0">
+                    <p class="bloom-account">have an account?</p>
+                    <button class="bloom-button" id="bloom-signin">login</button>
+                </div>
+                <div class="bloom-rightbox">
+                    <h2 class="bloom-title"><span>BLOOM</span>&<br>BOUQUET</h2>
+                    <p class="bloom-desc">pick your perfect <span>bouquet</span></p>
+                    <img class="bloom-flower" src="https://preview.ibb.co/jvu2Un/0057c1c1bab51a0.jpg" alt="flower"/>
+                    <p class="bloom-account">don't have an account?</p>
+                    <button class="bloom-button" id="bloom-signup">sign up</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+    $(document).ready(function() {
+      // The code above goes here
+      $('#bloom-signup').click(function() {
+        $('.bloom-pinkbox').css('transform', 'translateX(80%)');
+        $('.bloom-signin').addClass('bloom-nodisplay');
+        $('.bloom-signup').removeClass('bloom-nodisplay');
+      });
+    
+      $('#bloom-signin').click(function() {
+        $('.bloom-pinkbox').css('transform', 'translateX(0%)');
+        $('.bloom-signup').addClass('bloom-nodisplay');
+        $('.bloom-signin').removeClass('bloom-nodisplay');
+      });
+    });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const uniqueTabs = document.querySelectorAll('.unique-tab');
+
+            uniqueTabs.forEach(tab => {
+                tab.addEventListener('click', function () {
+                    // Remove active class from all tabs
+                    uniqueTabs.forEach(t => t.classList.remove('unique-tab-active'));
+
+                    // Add active class to clicked tab
+                    this.classList.add('unique-tab-active');
+
+                    // Hide all plans
+                    document.querySelectorAll('.unique-plans-container').forEach(plan => {
+                        plan.classList.remove('unique-plans-visible');
+                    });
+
+                    // Show selected plans
+                    const target = this.getAttribute('data-target');
+                    document.getElementById(`${target}-plans`).classList.add('unique-plans-visible');
+                });
+            });
+        });
+        $('#bloom-signup').click(function() {
+  $('.bloom-pinkbox').css('transform', 'translateX(80%)');
+  $('.bloom-signin').addClass('bloom-nodisplay');
+  $('.bloom-signup').removeClass('bloom-nodisplay');
+});
+
+$('#bloom-signin').click(function() {
+  $('.bloom-pinkbox').css('transform', 'translateX(0%)');
+  $('.bloom-signup').addClass('bloom-nodisplay');
+  $('.bloom-signin').removeClass('bloom-nodisplay');
+});
+    </script>
+</body>
+
+</html>

@@ -78,7 +78,7 @@ header {
 }
 
 #icono-menu:hover .submenu {
-  color: #b592b7;
+  color: #B1B2DE;
 }
 
 
@@ -294,7 +294,7 @@ header.sticky ul li a {
 
 #boton-busqueda {
   padding: 10px 25px;
-  background-color: #b39bc1;
+  background-color: #B1B2DE;
   color: #fff;
   border: none;
   font-weight: bold;
@@ -376,7 +376,7 @@ header.sticky ul li a {
 
 .botones-derecha #login:hover{
 transform: scale(1.1);
-background-color: #b39bc1;
+background-color: #B1B2DE;
 }
 header {
   position: fixed;
@@ -394,7 +394,7 @@ header {
 
 
 header.solid #login{
-  background-color: #b39bc1;
+  background-color: #B1B2DE;
 }
 
 header.sticky {
@@ -614,7 +614,7 @@ header.solid {
 }
 
 .footer-column ul li a:hover {
-  color: #b592b7;
+  color: #B1B2DE;
   
 }
 
