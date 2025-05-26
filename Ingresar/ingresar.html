@@ -6,12 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Unique Pricing Plans</title>
     <link rel="stylesheet" href="ingresar_styles.css">
-    <style>
-
-    </style>
+    
 </head>
 
 <body class="unique-body">
+    
     <div class="unique-container">
         <div class="unique-toggle-wrapper">
             <div class="unique-toggle">
@@ -21,6 +20,51 @@
             </div>
         </div>
 
+        <div class="container">
+            <div class="welcome">
+                <div class="pinkbox">
+                <div class="signup nodisplay">
+                    <h1>register</h1>
+                    <form id="registerForm" autocomplete="off">
+                        <input type="text" id="nombre" name="nombre" placeholder="nombre" required>
+                        <input type="text" id="apellidos" name="apellidos" placeholder="apellidos" required>
+                        <input type="email" id="email" name="email" placeholder="email" required>
+                        <input type="password" id="password" name="password" placeholder="password" required>
+                        <button type="submit" class="button submit">create account</button>
+                    </form>
+                </div>
+                    <div class="signin">
+                        <h1>sign in</h1>
+                        <form class="more-padding" id="loginForm" autocomplete="off">
+                            <input type="email" id="email" placeholder="email" />
+                            <input type="password" id="password" placeholder="password" />
+                            <div class="checkbox">
+                            <input type="checkbox" id="remember" />
+                            <label for="remember">remember me</label>
+                            </div>
+                            <button type="submit" class="button submit">login</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="leftbox">
+                <h2 class="title"><span>BLOOM</span>&<br>BOUQUET</h2>
+                <p class="desc">pick your perfect <span>bouquet</span></p>
+                <img class="flower smaller" src="https://image.ibb.co/d5X6pn/1357d638624297b.jpg" alt="1357d638624297b" border="0">
+                <p class="account">have an account?</p>
+                <button class="button" id="signin">login</button>
+                </div>
+                <div class="rightbox">
+                <h2 class="title"><span>BLOOM</span>&<br>BOUQUET</h2>
+                <p class="desc"> pick your perfect <span>bouquet</span></p>
+                <img class="flower" src="https://preview.ibb.co/jvu2Un/0057c1c1bab51a0.jpg"/>
+                <p class="account">don't have an account?</p>
+                <button class="button" id="signup">sign up</button>
+                </div>
+            </div>
+            </div>
+
+</div>
+        <!--
         <div class="unique-plans-container unique-plans-visible unique-client-plans" id="client-plans">
             <div class="bloom-container">
                 <div class="bloom-welcome">
@@ -32,7 +76,7 @@
                                 <input type="email" placeholder="email">
                                 <input type="password" placeholder="password">
                                 <input type="password" placeholder="confirm password">
-                                <button class="bloom-button bloom-submit">create account</button>
+                                <button class="bloom-button bloom-submit" onclick="create()">create account</button>
                             </form>
                         </div>
                         <div class="bloom-signin">
@@ -40,7 +84,7 @@
                             <form class="bloom-form bloom-more-padding" autocomplete="off">
                                 <input type="text" placeholder="username">
                                 <input type="password" placeholder="password">
-                                <button class="bloom-button bloom-submit">login</button>
+                                <button class="bloom-button bloom-submit">login 1</button>
                             </form>
                         </div>
                     </div>
@@ -49,7 +93,7 @@
                         <p class="bloom-desc">pick your perfect <span>bouquet</span></p>
                         <img class="bloom-flower bloom-smaller" src="https://image.ibb.co/d5X6pn/1357d638624297b.jpg" alt="flower" border="0">
                         <p class="bloom-account">have an account?</p>
-                        <button class="bloom-button" id="bloom-signin">login</button>
+                        <button class="bloom-button" id="bloom-signin">login 2</button>
                     </div>
                     <div class="bloom-rightbox">
                         <h2 class="bloom-title"><span>BLOOM</span>&<br>BOUQUET</h2>
@@ -104,7 +148,58 @@
             </div>
         </div>
     </div>
+-->
+
+<!--
+<div class="container">
+  <div class="welcome">
+    <div class="pinkbox">
+      <div class="signup nodisplay">
+        <h1>register</h1>
+        <form autocomplete="off">
+          <input type="text" placeholder="username">
+          <input type="email" placeholder="email">
+          <input type="password" placeholder="password">
+          <input type="password" placeholder="confirm password">
+          <button class="button submit">create account </button>
+        </form>
+      </div>
+      <div class="signin">
+        <h1>sign in</h1>
+        <form class="more-padding" autocomplete="off">
+          <input type="text" placeholder="username">
+          <input type="password" placeholder="password">
+          <div class="checkbox">
+            <input type="checkbox" id="remember" /><label for="remember">remember me</label>
+          </div>
+
+          <button class="button submit">login</button>
+        </form>
+      </div>
     </div>
+    <div class="leftbox">
+      <h2 class="title"><span>BLOOM</span>&<br>BOUQUET</h2>
+      <p class="desc">pick your perfect <span>bouquet</span></p>
+      <img class="flower smaller" src="https://image.ibb.co/d5X6pn/1357d638624297b.jpg" alt="1357d638624297b" border="0">
+      <p class="account">have an account?</p>
+      <button class="button" id="signin">login</button>
+    </div>
+    <div class="rightbox">
+      <h2 class="title"><span>BLOOM</span>&<br>BOUQUET</h2>
+      <p class="desc"> pick your perfect <span>bouquet</span></p>
+      <img class="flower" src="https://preview.ibb.co/jvu2Un/0057c1c1bab51a0.jpg"/>
+      <p class="account">don't have an account?</p>
+      <button class="button" id="signup">sign up</button>
+    </div>
+  </div>
+ </div>
+
+</div>
+
+-->
+
+    </div>
+   <!--
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
     $(document).ready(function() {
@@ -157,6 +252,10 @@ $('#bloom-signin').click(function() {
   $('.bloom-signin').removeClass('bloom-nodisplay');
 });
     </script>
+
+-->
+
+<script src="ingresar.js" ></script>
 </body>
 
 </html>
