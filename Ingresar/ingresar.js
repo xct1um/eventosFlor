@@ -93,6 +93,40 @@ document.getElementById('registerForm').addEventListener('submit', async functio
       } 
     
   });
+
+//Script de Admin
+
+const adminloginForm = document.getElementById('adminLoginForm');
+
+adminloginForm.addEventListener('submit', async function (e) {
+    e.preventDefault(); 
+
+    //meter datos 
+    const email = document.getElementById('adminEmail').value.trim();
+    const password = document.getElementById('adminPassword').value;
+  
+      const response = await fetch(`http://localhost:9003/usuario/loginAdmin/${email}/${password}`,{
+        headers: {
+        'Content-Type': 'application/json'
+      }
+      });
+
+      if (response.ok) {
+        const result = await response.json();
+        if(result === 0){
+          alert('error de email o contraseña, pruebas otra');
+          
+        }else {
+          window.location.href = "administrador.html";
+        }
+      } 
+    
+  });
+
+
+
+  
+  /** Buton de Cliente Admin */
   const toggle = document.querySelector('.unique-toggle');
   const tabs = document.querySelectorAll('.unique-tab');
   const clientView = document.getElementById('client-view');
@@ -121,3 +155,6 @@ document.getElementById('registerForm').addEventListener('submit', async functio
       this.classList.add('unique-tab-active');
     });
   });
+
+
+
