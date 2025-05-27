@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Panel del Cliente</title>
+  <link rel="stylesheet" href="cliente.css">
+</head>
+<body>
+
+  <header>
+    <div class="header-container">
+        <div class="footer-logo">
+            <img src="logo-gray.png" alt="Logo" />
+        </div>
+        <h1>Clientes</h1>
+    </div>
+</header>
+
+  <nav class="cliente-nav">
+    <button data-target="cliente-mis-datos" class="cliente-nav-btn">Mis Datos</button>
+    <button data-target="cliente-mis-reservas" class="cliente-nav-btn">Mis Reservas</button>
+  </nav>
+
+  <main class="cliente-main">
+    <section id="cliente-mis-datos" class="cliente-vista cliente-vista-activa">
+      <h2>Mis Datos</h2>
+    </section>
+
+    <section id="cliente-mis-reservas" class="cliente-vista">
+      <h2>Mis Reservas</h2>
+    </section>
+  </main>
+
+  <script src="cliente.js"></script>
+</body>
+</html>
