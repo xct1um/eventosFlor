@@ -16,12 +16,9 @@ document.addEventListener('DOMContentLoaded', function() {
     signup.classList.add('nodisplay');
     signin.classList.remove('nodisplay');
   });
-});
-
-
 
 //Script de INICIO
-document.addEventListener('DOMContentLoaded', function () {
+
   const loginForm = document.getElementById('loginForm');
 
   loginForm.addEventListener('submit', async function (e) {
@@ -56,5 +53,33 @@ document.addEventListener('DOMContentLoaded', function () {
       
       alert('error de fetch');
     }
+  });
+  const toggle = document.querySelector('.unique-toggle');
+  const tabs = document.querySelectorAll('.unique-tab');
+  const clientView = document.getElementById('client-view');
+  const adminView = document.getElementById('admin-view');
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', function () {
+      const target = this.getAttribute('data-target');
+      toggle.setAttribute('data-active', target);
+  
+      if (target === 'client') {
+        clientView.classList.remove('nodisplay');
+        adminView.classList.add('nodisplay');
+      } else {
+        clientView.classList.add('nodisplay');
+        adminView.classList.remove('nodisplay');
+  
+        // CORRECCIÓN CLAVE AQUÍ:
+        signin.classList.remove('nodisplay');
+        signup.classList.add('nodisplay');
+        pinkbox.style.transform = 'translateX(0%)';
+      }
+  
+      // Estilo de pestaña activa
+      tabs.forEach(t => t.classList.remove('unique-tab-active'));
+      this.classList.add('unique-tab-active');
+    });
   });
 });
