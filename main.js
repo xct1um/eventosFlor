@@ -232,7 +232,7 @@ function AceptoModalEliminar() {
 /*Script para ver Reservas por Evento */
 
 function verReservasPorEvento(idEvento) {
-  fetch(`http://localhost:9003/reserva/evento/${idEvento}`)
+  fetch(`http://localhost:9003/reserva/idEvento/${idEvento}`)
       .then(response => {
           if (!response.ok) {
               throw new Error("Error al cargar reservas");
@@ -275,7 +275,7 @@ function mostrarReservasEnModal(reservas) {
           ${reservas.map(r => `
               <tr>
                   <td>${r.idReserva}</td>
-                  <td>${r.usuario.nombre}</td>
+                  <td>${r.nombre || "Sin nombre"}</td>
                   <td>${r.cantidad}</td>
                   <td>${r.precioVenta} €</td>
                   <td>${r.observaciones || ""}</td>
