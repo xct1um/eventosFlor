@@ -93,31 +93,49 @@ document.getElementById('registerForm').addEventListener('submit', async functio
       } 
     
   });
-  const toggle = document.querySelector('.unique-toggle');
-  const tabs = document.querySelectorAll('.unique-tab');
-  const clientView = document.getElementById('client-view');
-  const adminView = document.getElementById('admin-view');
+  const pinkbox = document.querySelector('.pinkbox'); 
+const toggle = document.querySelector('.unique-toggle');
+const clientView = document.getElementById('client-view');
+const adminView = document.getElementById('admin-view');
+const signinBtn = document.getElementById('signin');
+const signupBtn = document.getElementById('signup');
+const signinForm = document.querySelector('.signin');
+const signupForm = document.querySelector('.signup');
 
-  tabs.forEach(tab => {
-    tab.addEventListener('click', function () {
-      const target = this.getAttribute('data-target');
-      toggle.setAttribute('data-active', target);
-  
-      if (target === 'client') {
-        clientView.classList.remove('nodisplay');
-        adminView.classList.add('nodisplay');
-      } else {
-        clientView.classList.add('nodisplay');
-        adminView.classList.remove('nodisplay');
-  
-        // CORRECCIÓN CLAVE AQUÍ:
-        signin.classList.remove('nodisplay');
-        signup.classList.add('nodisplay');
-        pinkbox.style.transform = 'translateX(0%)';
-      }
-  
-      // Estilo de pestaña activa
-      tabs.forEach(t => t.classList.remove('unique-tab-active'));
-      this.classList.add('unique-tab-active');
-    });
+toggle.addEventListener('click', function (e) {
+  const target = e.target.closest('.unique-tab');
+  if (!target) return;
+
+  const view = target.dataset.target;
+  toggle.setAttribute('data-active', view);
+
+  if (view === 'admin') {
+    clientView.classList.add('nodisplay');
+    adminView.classList.remove('nodisplay');
+  } else {
+    adminView.classList.add('nodisplay');
+    clientView.classList.remove('nodisplay');
+
+    // Restaurar formulario de inicio por defecto
+    signinForm.classList.remove('nodisplay');
+    signupForm.classList.add('nodisplay');
+
+    // Asegurar que el botón de registrarse sea visible
+    document.querySelector('.rightbox').style.display = 'block';
+
+    // Restaurar la posición del rectángulo rosa
+    pinkbox.style.transform = 'translateX(0%)';
+  }
+});
+
+  // Mostrar formulario de registro
+  signupBtn.addEventListener('click', function () {
+    signinForm.classList.add('nodisplay');
+    signupForm.classList.remove('nodisplay');
+  });
+
+  // Mostrar formulario de ingreso
+  signinBtn.addEventListener('click', function () {
+    signupForm.classList.add('nodisplay');
+    signinForm.classList.remove('nodisplay');
   });
