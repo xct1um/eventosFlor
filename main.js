@@ -293,15 +293,17 @@ function abrirModalReservas() {
 function cerrarModalReservas() {
   document.getElementById("modal-reservas").style.display = "none";
 }
+
+
 /*Script Cerrar Sesión*/
-function cerrar(){
-  /*const res = await fetch(`http://localhost:9003/usuario/cerrar`,{
+async function cerrar(){
+  const res = await fetch(`http://localhost:9003/usuario/cerrar`,{
     method: "POST",
-  });*/
+  });
   localStorage.removeItem('admin');
   window.location.href = 'proyecto.html';
 }
-
+/*
 //Script de REGISTRO
 document.getElementById('registerForm').addEventListener('submit', async function (event) {
     event.preventDefault(); // 阻止表单默认提交行为
@@ -347,6 +349,6 @@ document.getElementById('registerForm').addEventListener('submit', async functio
     } catch (error) {
         alert('Request failed: ' + error.message);
     }
-});
+});*/
 
 
