@@ -37,8 +37,7 @@ document.getElementById('registerForm').addEventListener('submit', async functio
     email: email,
     password: password
   };
-
-  try {
+  
     const res = await fetch('http://localhost:9003/usuario/alta', {
       method: 'POST',
       headers: {
@@ -49,7 +48,7 @@ document.getElementById('registerForm').addEventListener('submit', async functio
 
     if (res.ok) {
       const result = await res.json();
-      alert('Ya esta registrado');
+      alert('Registro exito');
       
       window.location.href = "paginaCliente/page.html"//este no sunciona
      // this.reset();
@@ -59,9 +58,7 @@ document.getElementById('registerForm').addEventListener('submit', async functio
       alert('Error: ' + (errorData.message || res.statusText));
       return;
 
-  } catch (error) {
-    alert('Request failed: ' + error.message);
-  }
+  
 });
 
 
