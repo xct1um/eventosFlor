@@ -296,59 +296,9 @@ function cerrarModalReservas() {
 
 
 /*Script Cerrar Sesión*/
-async function cerrar(){
-  const res = await fetch(`http://localhost:9003/usuario/cerrar`,{
-    method: "POST",
-  });
-  localStorage.removeItem('admin');
-  window.location.href = 'proyecto.html';
+// Cerrar sesión
+const idUsuario = localStorage.getItem('idUsuario');
+function logout() {
+  localStorage.removeItem('idUsuario');
+  window.location.href = "../ingresar.html";
 }
-/*
-//Script de REGISTRO
-document.getElementById('registerForm').addEventListener('submit', async function (event) {
-    event.preventDefault(); // 阻止表单默认提交行为
-
-
-    // 获取表单输入值
-    const nombre = document.getElementById('nombre').value.trim();
-    const apellidos = document.getElementById('apellidos').value.trim();
-    const email = document.getElementById('email').value.trim();
-    const password = document.getElementById('password').value;
-
-
-
-    // 构造发送的数据对象
-    const data = {
-        nombre: nombre,
-        apellidos: apellidos,
-        email: email,
-        password: password
-    };
-
-    try {
-        const res = await fetch('http://localhost:9003/usuario/alta', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)
-        });
-
-        if (!res.ok) {
-            const errorData = await res.json();
-            alert('Error: ' + (errorData.message || res.statusText));
-            return;
-        }
-
-        const result = await res.json();
-        alert('Ya esta registrado');
-        window.location.href = "page.html";
-        // 这里可以重置表单或者跳转页面
-        this.reset();
-
-    } catch (error) {
-        alert('Request failed: ' + error.message);
-    }
-});*/
-
-

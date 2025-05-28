@@ -62,40 +62,49 @@ document.getElementById('registerForm').addEventListener('submit', async functio
 });
 
 
-//Script de INICIO
+// Script de INICIO DE SESIÓN DE CLIENTE
 
-  const loginForm = document.getElementById('loginForm');
+const loginForm = document.getElementById('loginForm');
 
-  loginForm.addEventListener('submit', async function (e) {
-    e.preventDefault(); 
+loginForm.addEventListener('submit', async function (e) {
+  e.preventDefault();
 
-    //meter datos 
-    const email = document.getElementById('loginEmail').value.trim();
-    const password = document.getElementById('loginPassword').value;
-  
-      const response = await fetch(`http://localhost:9003/usuario/email/${email}/password/${password}`,{
-        headers: {
+  // Obtener los datos del formulario
+  const email = document.getElementById('loginEmail').value.trim();
+  const password = document.getElementById('loginPassword').value;
+
+  try {
+    // Hacer la petición al backend
+    const response = await fetch(`http://localhost:9003/usuario/email/${email}/password/${password}`, {
+      headers: {
         'Content-Type': 'application/json'
       }
-      });
+    });
 
-      if (response.ok) {
-        const result = await response.json();
-        if(result === 0){
-          alert('Error de email o contraseña, prueba otra vez');
-        } else {
-          // Guarda el ID del usuario
-          localStorage.setItem('idUsuario', result);
-          
-          // Redirige a la página del cliente
-          window.location.href = "paginaCliente/cliente.html";
-        }
-      }
-    
-  });
+    // Verificar si la respuesta es correcta
+    if (!response.ok) {
+      alert('Error al conectar con el servidor.');
+      return;
+    }
 
+    const result = Number(await response.json()); // Aseguramos que sea un número
 
+    if (result === 0) {
+      alert('Error de email o contraseña, prueba otra vez');
+    } else {
+      // Limpiar cualquier ID anterior antes de guardar el nuevo
+      localStorage.removeItem('idUsuario');
+      localStorage.setItem('idUsuario', result);
 
+      // Redirigir al cliente
+      window.location.href = "paginaCliente/cliente.html";
+    }
+
+  } catch (error) {
+    console.error("Error en login:", error);
+    alert('Error inesperado en el login.');
+  }
+});
 
 //Script de Admin
 

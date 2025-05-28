@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
   //Si no hay ID, redirigir al login
   if (!idUsuario) {
     alert("Sesión expirada. Por favor, inicia sesión.");
-    window.location.href = "../login.html"; // Ajusta la ruta si es necesario
+    window.location.href = "../ingresar.html"; // Ajusta la ruta si es necesario
     return;
   }
 
@@ -13,21 +13,35 @@ document.addEventListener('DOMContentLoaded', () => {
   const botones = document.querySelectorAll('.cliente-nav-btn');
   const vistas = document.querySelectorAll('.cliente-vista');
 
+  // Navegación entre pestañas
   botones.forEach(boton => {
     boton.addEventListener('click', () => {
       vistas.forEach(v => v.classList.remove('cliente-vista-activa'));
       const targetId = boton.getAttribute('data-target');
       document.getElementById(targetId).classList.add('cliente-vista-activa');
+
+      if (targetId === 'cliente-mis-reservas') {
+        cargarReservas(idUsuario);
+      }
     });
   });
 
+
   //Mostrar vista inicial por defecto
   document.getElementById('eventos-destacados').classList.add('cliente-vista-activa');
+  document.getElementById('btn-editar-datos').addEventListener('click', () => {
+    // Mostrar formulario
+    document.getElementById('form-editar-datos').style.display = 'block';
 
+    // Rellenar campos con los datos actuales
+    document.getElementById('input-nombre').value = document.getElementById('nombre-usuario').innerText;
+    document.getElementById('input-apellidos').value = document.getElementById('apellidos-usuario').innerText;
+    document.getElementById('input-email').value = document.getElementById('email-usuario').innerText;
+  });
   //Cargar contenido dinámico
   cargarEventos();
   cargarDatosUsuario(idUsuario);
-  cargarReservas(idUsuario); // Descomenta si estás usando reservas
+  //cargarReservas(idUsuario); // Descomenta si estás usando reservas
 });
 
 //Función para cargar eventos destacados
@@ -68,24 +82,48 @@ function cargarDatosUsuario(idUsuario) {
     .catch(err => console.error("Error al cargar datos del usuario:", err));
 }
 
-// Función para cargar reservas del usuario (si la usas)
 function cargarReservas(idUsuario) {
-  fetch(`http://localhost:9003/reservas/usuario/${idUsuario}`)
+  fetch(`http://localhost:9003/reserva/idUsuario/${idUsuario}`)
     .then(res => res.json())
     .then(reservas => {
       const contenedor = document.getElementById('reservas-usuario');
       contenedor.innerHTML = '';
+
+      // ✅ Si no hay reservas, mostrar mensaje y salir
+      if (reservas.length === 0) {
+        contenedor.innerHTML = '<p>No tienes reservas aún.</p>';
+        return;
+      }
+
+      // 🧩 Si hay reservas, renderizarlas
       reservas.forEach(reserva => {
         const div = document.createElement('div');
         div.classList.add('reserva');
+
         div.innerHTML = `
-          <h4>${reserva.eventoNombre}</h4>
-          <p>Cantidad: ${reserva.cantidad}</p>
-          <button onclick="cancelarReserva(${reserva.id})">Cancelar</button>
-          <button onclick="modificarReserva(${reserva.id})">Modificar</button>
+          <h4>${reserva.nombreEvento}</h4>
+          <p><strong>Fecha:</strong> No disponible</p>
+          <p><strong>Cantidad:</strong> ${reserva.cantidad}</p>
+          <p><strong>Precio por entrada:</strong> ${reserva.precioEvento} €</p>
+          <p><strong>Total:</strong> ${reserva.precioEvento * reserva.cantidad} €</p>
+          <p><strong>Observaciones:</strong> ${reserva.observaciones || 'Ninguna'}</p>
         `;
+
+        // Botón Cancelar
+        const btnCancelar = document.createElement('button');
+        btnCancelar.textContent = "Cancelar";
+        btnCancelar.addEventListener("click", () => cancelarReserva(reserva.idReserva));
+        div.appendChild(btnCancelar);
+
+        // Botón Modificar
+        const btnModificar = document.createElement('button');
+        btnModificar.textContent = "Modificar";
+        btnModificar.addEventListener("click", () => abrirModalModificacion(reserva));
+        div.appendChild(btnModificar);
+
         contenedor.appendChild(div);
       });
+
     })
     .catch(err => console.error("Error al cargar reservas:", err));
 }
@@ -98,7 +136,7 @@ function reservarEvento(idEvento) {
 
 // Cancelar reserva
 function cancelarReserva(idReserva) {
-  fetch(`http://localhost:9003/reservas/${idReserva}`, { method: 'DELETE' })
+  fetch(`http://localhost:9003/reserva/eliminar/${idReserva}`, { method: 'DELETE' })
     .then(() => {
       alert("Reserva cancelada");
       location.reload();
@@ -107,10 +145,10 @@ function cancelarReserva(idReserva) {
 }
 
 // Modificar reserva
-function modificarReserva(idReserva) {
+function modificarReserva() {
   const nuevaCantidad = prompt("Nueva cantidad:");
   if (nuevaCantidad) {
-    fetch(`http://localhost:9003/reservas/${idReserva}`, {
+    fetch(`http://localhost:9003/reserva/update`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ cantidad: nuevaCantidad })
@@ -126,53 +164,52 @@ function modificarReserva(idReserva) {
 // Cerrar sesión
 function logout() {
   localStorage.removeItem('idUsuario');
-  window.location.href = "../login.html";
+  window.location.href = "../ingresar.html";
+}
+let reservaActualId = null;
+
+// Abrir el modal y rellenar los datos actuales
+function abrirModalModificacion(reserva) {
+  reservaActualId = reserva.idReserva;
+  document.getElementById("cantidad").value = reserva.cantidad;
+  document.getElementById("observaciones").value = reserva.observaciones || '';
+  document.getElementById("modal-modificar").style.display = "block";
 }
 
-/*
-function cargarReservas(idUsuario) {
-  fetch(`http://localhost:9003/reservas/usuario/${idUsuario}`)
-    .then(res => res.json())
-    .then(reservas => {
-      const contenedor = document.getElementById('reservas-usuario');
-      contenedor.innerHTML = '';
-      reservas.forEach(reserva => {
-        const div = document.createElement('div');
-        div.classList.add('reserva');
-        div.innerHTML = `
-          <h4>${reserva.eventoNombre}</h4>
-          <p>Cantidad: ${reserva.cantidad}</p>
-          <button onclick="cancelarReserva(${reserva.id})">Cancelar</button>
-          <button onclick="modificarReserva(${reserva.id})">Modificar</button>
-        `;
-        contenedor.appendChild(div);
-      });
-    });
-}
+// Cerrar el modal
+document.querySelector(".close").onclick = function () {
+  document.getElementById("modal-modificar").style.display = "none";
+};
 
-function reservarEvento(idEvento) {
-  alert(`Evento ${idEvento} reservado`);
-}
+// Al enviar el formulario
+document.getElementById("form-modificar").addEventListener("submit", function (e) {
+  e.preventDefault();
 
-function cancelarReserva(idReserva) {
-  fetch(`http://localhost:9003/reservas/${idReserva}`, { method: 'DELETE' })
-    .then(() => {
-      alert("Reserva cancelada");
+  const nuevaCantidad = document.getElementById("cantidad").value;
+  const nuevasObservaciones = document.getElementById("observaciones").value;
+
+  fetch("http://localhost:9003/reserva/update", {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      idReserva: reservaActualId,
+      cantidad: parseInt(nuevaCantidad),
+      observaciones: nuevasObservaciones
+    })
+  })
+    .then(res => {
+      if (!res.ok) throw new Error("Error en la solicitud");
+      alert("Reserva modificada correctamente");
       location.reload();
+    })
+    .catch(err => {
+      console.error("Error al modificar reserva:", err);
+      alert("Hubo un error al modificar la reserva.");
     });
-}
 
-function modificarReserva(idReserva) {
-  const nuevaCantidad = prompt("Nueva cantidad:");
-  if (nuevaCantidad) {
-    fetch(`http://localhost:9003/reservas/${idReserva}`, {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ cantidad: nuevaCantidad })
-    }).then(() => {
-      alert("Reserva modificada");
-      location.reload();
-    });
-  }
-}
-*/
+
+});
+
+

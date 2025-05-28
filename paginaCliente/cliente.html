@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <title>Panel del Cliente</title>
   <link rel="stylesheet" href="cliente.css">
 </head>
+
 <body>
 
   <header>
@@ -51,17 +53,50 @@
           <label>Contraseña:</label>
           <span id="password-usuario">********</span>
         </div>
+        <button id="btn-editar-datos">Editar Datos</button>
+
       </div>
+      
+      <form id="form-editar-datos" class="cliente-form" style="display: none;">
+        <label for="input-nombre">Nombre</label>
+        <input type="text" id="input-nombre">
+
+        <label for="input-apellidos">Apellidos</label>
+        <input type="text" id="input-apellidos">
+
+        <label for="input-email">Email</label>
+        <input type="email" id="input-email">
+
+        <label for="input-password">Contraseña</label>
+        <input type="password" id="input-password">
+
+        <button type="submit">Guardar Cambios</button>
+      </form>
     </section>
 
     <section id="cliente-mis-reservas" class="cliente-vista">
-      <div id="reservas-lista" class="reservas-container">
+      <div id="reservas-usuario" class="reservas-container">
         <!-- Aquí se cargarán las tarjetas de reservas dinámicamente -->
       </div>
     </section>
 
   </main>
+  <div id="modal-modificar" class="modal" style="display: none;">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h3>Modificar Reserva</h3>
+      <form id="form-modificar">
+        <label for="cantidad">Cantidad:</label>
+        <input type="number" id="cantidad" name="cantidad" required>
 
+        <label for="observaciones">Observaciones:</label>
+        <textarea id="observaciones" name="observaciones" rows="3" required></textarea>
+
+        <button type="submit">Guardar Cambios</button>
+      </form>
+    </div>
+  </div>
   <script src="cliente.js"></script>
 </body>
+
 </html>
