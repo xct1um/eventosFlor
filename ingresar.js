@@ -82,12 +82,15 @@ document.getElementById('registerForm').addEventListener('submit', async functio
       if (response.ok) {
         const result = await response.json();
         if(result === 0){
-          alert('error de email o contraseña, pruebas otra');
+          alert('Error de email o contraseña, prueba otra vez');
+        } else {
+          // Guarda el ID del usuario
+          localStorage.setItem('idUsuario', result);
           
-        }else {
-          window.location.href = "paginaCliente/page.html";
+          // Redirige a la página del cliente
+          window.location.href = "paginaCliente/cliente.html";
         }
-      } 
+      }
     
   });
 

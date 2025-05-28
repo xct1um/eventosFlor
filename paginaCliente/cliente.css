@@ -297,3 +297,23 @@ transition: background-color 0.3s;
 .reserva-buttons button:hover {
 background-color: #880e4f;
 }
+
+.logout-container {
+  flex: 0 0 auto;
+  margin-left: auto;
+}
+
+.logout-btn {
+  background-color: #b1b1b1;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.logout-btn:hover {
+  background-color: #d81b60;
+}
