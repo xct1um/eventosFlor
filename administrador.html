@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página de Administrador</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@400..700&family=Lexend:wght@100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Faculty+Glyphic&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="administrador.css">
+</head>
+
+<body>
+    <header>
+        <div class="container d-flex justify-content-between align-items-center">
+            <div class="footer-logo">
+                <img src="Resources/logo-gray.png" alt="Logo" />
+            </div>
+            <h1>Eventos de Flores</h1>
+            <nav>
+              <button onclick="cerrar()" type="submit" class="boton-cerrar">Cerrar Sesión</button>
+            </nav>
+        </div>
+    </header>
+    <!-- Alta -->
+    <div class="form-container">
+        <h2>Dar de Alta un Evento</h2>
+        <form id="DarAlta">
+          <div>
+            <label for="nombre">Nombre del Evento:</label>
+            <input type="text" id="nombre" required>
+          </div>
+    
+          <div>
+            <label for="tipo">Tipo de Flor (ID):</label>
+            <input type="number" id="tipo" required>
+          </div>
+    
+          <div class="full-width">
+            <label for="descripcion">Descripción:</label>
+            <textarea id="descripcion" rows="3" required></textarea>
+          </div>
+    
+          <div>
+            <label for="direccion">Dirección:</label>
+            <input type="text" id="direccion" required>
+          </div>
+    
+          <div>
+            <label for="fechaAlta">Fecha de Alta:</label>
+            <input type="date" id="fechaAlta" readonly>
+          </div>
+    
+          <div>
+            <label for="fechaInicio">Fecha de Inicio:</label>
+            <input type="date" id="fechaInicio" required>
+          </div>
+    
+          <div>
+            <label for="duracion">Duración:</label>
+            <input type="number" id="duracion" required>
+          </div>
+    
+          <div>
+            <label for="unidadDuracion">Unidad de Duración:</label>
+            <select id="unidadDuracion" required>
+              <option value="HORAS">HORAS</option>
+              <option value="DIAS">DÍAS</option>
+              <option value="MESES">MESES</option>
+            </select>
+          </div>
+    
+          <div>
+            <label for="aforoMaximo">Aforo Máximo:</label>
+            <input type="number" id="aforoMaximo" required>
+          </div>
+    
+          <div>
+            <label for="precio">Precio (€):</label>
+            <input type="number" step="0.01" id="precio" required>
+          </div>
+    
+          <div>
+            <label for="estado">Estado:</label>
+            <select id="estado" required>
+              <option value="ACTIVO">ACTIVO</option>
+              <option value="TERMINADO">TERMINADO</option>
+              <option value="CANCELADO">CANCELADO</option>
+            </select>
+          </div>
+    
+          <div>
+            <label for="destacado">Destacado:</label>
+            <select id="destacado" required>
+              <option value="S">S</option>
+              <option value="N">N</option>
+            </select>
+          </div>
+    
+          <button type="submit">Guardar Evento</button>
+        </form>
+        <div id="mensaje"></div>
+      </div>
+    </div>
+
+    <!-- Cambia el color del header al hacer scroll -->
+    <script type="text/javascript">
+        window.addEventListener("scroll", function () {
+            var header = document.querySelector("header");
+            header.classList.toggle("sticky", window.scrollY > 0);
+        });
+    </script>
+    <!-- List Evento -->
+    <div class="container" style="margin-top: 5em;">
+        <h2 class="mb-4">Listado de Eventos</h2>
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover align-middle text-center">
+                <thead class="table-dark">
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Aforo Máximo</th>
+                        <th>Precio (€)</th>
+                        <th>Estado</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="tabla-eventos">
+                    
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+      </div>
+      </form>
+
+         <div id="mensaje"></div>
+    
+  </div>
+
+  <!-- Ventana ver detalle -->
+  <div id="modal-detalle" class="modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background-color: rgba(0,0,0,0.5); justify-content:center; align-items:center;">
+    <div style="background:white; padding:20px; border-radius:10px; max-width:600px; width:100%;">
+      <h4>Ver Detalle</h4>
+      <div id="contenido-detalle" >
+        <!-- Aquí se cargarán las reservas -->
+      </div>
+      <div class="text-end mt-3">
+        <button onclick="cerrarModalDetalle()" class="btn btn-secondary">Cerrar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Ventana eliminar -->
+  <div id="modal-Eliminar" class="modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background-color: rgba(0,0,0,0.5); justify-content:center; align-items:center;">
+    <div style="background:white; padding:20px; border-radius:10px; max-width:600px; width:100%;">
+      <h4>Evento Esta eliminado</h4>
+      <div id="contenido-eliminar" >
+        <!-- Aquí se cargarán las reservas -->
+      </div>
+      <div class="text-end mt-3">
+        <button onclick="AceptoModalEliminar()" class="btn btn-secondary">Acepto</button>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Ventana editar -->
+<div id="modal-editar" class="modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background-color: rgba(0,0,0,0.5); justify-content:center; align-items:center;">
+  <div style="background:white; padding:20px; border-radius:10px; max-width:500px; width:100%;">
+    <h4>Editar Evento</h4>
+    <form id="formEditar">
+      <input type="hidden" id="edit-id" class="formEditar"/>
+
+
+      <div class="mb-2">
+        <label>Nombre:</label>
+        <input type="text" id="edit-nombre" class="formEditar"/>
+      </div>
+
+
+      <div>
+        <label for="tipo">Tipo de Flor (ID):</label>
+        <input type="number" id="edit-tipo" class="formEditar">
+      </div>
+
+
+      <div class="mb-2">
+        <label>Aforo Máximo:</label>
+        <input type="number" id="edit-aforo" class="formEditar" />
+      </div>
+
+
+      <div class="mb-2">
+        <label>Precio:</label>
+        <input type="number" step="0.01" id="edit-precio" class="formEditar"/>
+      </div>
+
+
+      <div class="mb-2">
+        <label>Estado:</label>
+        <select id="edit-estado" class="formEditar" >
+          <option value="ACTIVO">ACTIVO</option>
+          <option value="TERMINADO">TERMINADO</option>
+          <option value="CANCELADO">CANCELADO</option>
+        </select>
+      </div>
+
+
+      <div>
+        <label for="destacado">Destacado:</label>
+        <select id="edit-destacado" class="formEditar">
+          <option value="S">S</option>
+          <option value="N">N</option>
+        </select>
+      </div>
+
+
+      <div>
+        <label for="fechaInicio">Fecha de Inicio:</label>
+        <input type="date" id="edit-fechaInicio" class="formEditar">
+      </div>
+
+
+      <div>
+        <label for="duracion">Duración:</label>
+        <input type="number" id="edit-duracion" class="formEditar">
+      </div>
+
+
+      <div>
+        <label for="unidadDuracion">Unidad de Duración:</label>
+        <select id="edit-unidadDuracion" class="formEditar">
+          <option value="HORAS">HORAS</option>
+          <option value="DIAS">DÍAS</option>
+          <option value="MESES">MESES</option>
+        </select>
+      </div>
+
+
+      <div>
+        <label for="direccion">Dirección:</label>
+        <input type="text" id="edit-direccion" class="formEditar">
+      </div>
+
+
+      <div class="full-width">
+        <label for="descripcion">Descripción:</label>
+        <textarea id="edit-descripcion" rows="3" class="formEditar"></textarea>
+      </div>
+
+
+      <div class="text-end">
+        <button type="button" id="cancelar-edicion" class="btn btn-secondary"  type="button" id="cancelar-edicion" >Cancelar</button>
+        <button type="submit" class="btn btn-primary" >Guardar</button>
+      </div>
+
+    </form>
+  </div>
+</div>
+
+    <script src="main.js"></script>
+
+    <!-- Ventana reserva -->
+    <div id="modal-reservas" class="modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background-color: rgba(0,0,0,0.5); justify-content:center; align-items:center;">
+      <div style="background:white; padding:20px; border-radius:10px; max-width:600px; width:100%;">
+        <h4>Reservas del Evento</h4>
+        <div id="contenido-reservas" >
+          <!-- Aquí se cargarán las reservas -->
+        </div>
+        <div class="text-end mt-3">
+          <button onclick="cerrarModalReservas()" class="btn btn-secondary">Cerrar</button>
+        </div>
+      </div>
+    </div>
+</body>
+
+</html>

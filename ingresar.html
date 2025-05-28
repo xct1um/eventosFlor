@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ingreso</title>
+    <link rel="stylesheet" href="ingresar_styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@400..700&family=Lexend:wght@100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Faculty+Glyphic&display=swap" rel="stylesheet">
+</head>
+
+<body class="unique-body">
+    <header>
+        <div class="header-container">
+            <div class="footer-logo">
+                <img src="Ingresar/logo-gray.png" alt="Logo" />
+            </div>
+            <h1>Eventos de Flores</h1>
+        </div>
+    </header>
+    <div class="unique-container">
+        <div class="unique-toggle-wrapper">
+            <div class="unique-toggle">
+                <div class="unique-tab unique-tab-active" data-target="client">Cliente</div>
+                <div class="unique-tab" data-target="admin">Administrador</div>
+                <div class="unique-slider"></div>
+            </div>
+        </div>
+        <div id="form-wrapper">
+            <div id="client-view">
+                <div class="welcome">
+                    <div class="pinkbox">
+                        <div class="signup nodisplay">
+                            <h1>Regístrate</h1>
+                            <form id="registerForm" autocomplete="off">
+                                <input type="text" id="nombre" name="nombre" placeholder="nombre" required>
+                                <input type="text" id="apellidos" name="apellidos" placeholder="apellidos" required>
+                                <input type="email" id="email" name="email" placeholder="email" required>
+                                <input type="password" id="password" name="password" placeholder="password" required>
+                                <button type="submit" class="button submit">Crea una cuenta</button>
+                            </form>
+                        </div>
+                        <div class="signin">
+                            <h1>Ingresa</h1>
+                            <form class="more-padding" id="loginForm" autocomplete="off">
+                                <input type="email" id="email" placeholder="email" />
+                                <input type="password" id="password" placeholder="password" />
+                                <div class="checkbox">
+                                    <input type="checkbox" id="remember" />
+                                    <label for="remember">Recuérdame</label>
+                                </div>
+                                <button type="submit" class="button submit">Ingresa</button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="leftbox">
+                        <h2 class="title" id="title1"><span>Eventos</span><br>de Flores</h2>
+                        <p class="desc">Encuentra tu evento <span>ideal</span></p>
+                        <img class="flower smaller" src="https://image.ibb.co/d5X6pn/1357d638624297b.jpg"
+                            alt="1357d638624297b" border="0">
+                        <p class="account">¿Tienes una cuenta?</p>
+                        <button class="button" id="signin">Ingresa</button>
+                    </div>
+                    <div class="rightbox">
+                        <h2 class="title"><span>Eventos</span><br>de Flores</h2>
+                        <p class="desc"> Encuentra tu <span>evento ideal</span></p>
+                        <img class="flower" src="https://preview.ibb.co/jvu2Un/0057c1c1bab51a0.jpg" />
+                        <p class="account">¿No tienes una cuenta?</p>
+                        <button class="button" id="signup">Regístrate</button>
+                    </div>
+                </div>
+            </div>
+            <div id="admin-view" class="nodisplay">
+                <!-- Formulario de administrador (puedes duplicar login o personalizarlo) -->
+                <div class="signin-admin">
+                    <h1 class="admin-title">Ingresa</h1>
+                    <form class="admin-form-padding" id="adminLoginForm" autocomplete="off">
+                        <input type="email" id="adminEmail" placeholder="email" />
+                        <input type="password" id="adminPassword" placeholder="password" />
+                        <div class="admin-checkbox">
+                            <input type="checkbox" id="adminRemember" />
+                            <label for="adminRemember">Recuérdame</label>
+                        </div>
+                        <button type="submit" class="admin-button admin-submit">Ingresa</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <script src="ingresar.js"></script>
+</body>
+
+</html>

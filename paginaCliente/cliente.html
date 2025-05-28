@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Panel del Cliente</title>
+  <link rel="stylesheet" href="cliente.css">
+</head>
+
+<body>
+
+  <header>
+    <div class="header-container">
+      <div class="footer-logo">
+        <img src="logo-gray.png" alt="Logo" />
+      </div>
+      <h1>Clientes</h1>
+    </div>
+  </header>
+
+  <main class="cliente-main">
+
+    <nav class="cliente-nav">
+      <button data-target="eventos-destacados" class="cliente-nav-btn">Destacados y Activos</button>
+      <button class="cliente-nav-btn" data-target="cliente-mis-datos">Mis Datos</button>
+      <button data-target="cliente-mis-reservas" class="cliente-nav-btn">Mis Reservas</button>
+    </nav>
+
+    <section id="eventos-destacados" class="cliente-vista cliente-vista-activa">
+      <h2>Eventos Destacados y Activos!</h2>
+      <div id="lista-eventos"></div>
+    </section>
+
+    <section id="cliente-mis-datos" class="cliente-vista">
+      <div class="datos-usuario-card" id="datos-usuario-card">
+        <h3>Información Personal</h3>
+        <div class="dato">
+          <label>Nombre:</label>
+          <span id="nombre-usuario">Nombre Apellido</span>
+        </div>
+        <div class="dato">
+          <label>Apellidos:</label>
+          <span id="apellidos-usuario">Apellido1 Apellido2</span>
+        </div>
+        <div class="dato">
+          <label>Email:</label>
+          <span id="email-usuario">usuario@email.com</span>
+        </div>
+        <div class="dato">
+          <label>Contraseña:</label>
+          <span id="password-usuario">********</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="cliente-mis-reservas" class="cliente-vista">
+      <div id="reservas-lista" class="reservas-container">
+        <!-- Aquí se cargarán las tarjetas de reservas dinámicamente -->
+      </div>
+    </section>
+
+  </main>
+
+  <script src="cliente.js"></script>
+</body>
+
+</html>
