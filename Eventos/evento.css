@@ -1,0 +1,99 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f9f8f6;
+    color: #2c2c2c;
+}
+
+.hero {
+    width: 100%;
+    background-color: #f0f0f0;
+    padding: 1rem 0;
+}
+
+.galeria-principal {
+    max-width: 1000px;
+    margin: auto;
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: 2fr 1fr;
+}
+
+.grande img {
+    width: 100%;
+    height: auto;
+    border-radius: 16px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.cuatro-pequenas {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+}
+
+.pequena img {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+main {
+    max-width: 1000px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+section {
+    margin-bottom: 2rem;
+}
+
+h2 {
+    font-size: 1.8rem;
+    color: #383838;
+    margin-bottom: 1rem;
+}
+
+ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+ul li {
+    margin-bottom: 0.5rem;
+}
+
+.galeria .imagenes {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.galeria img {
+    width: 30%;
+    border-radius: 12px;
+}
+
+.btn {
+    padding: 0.9rem 2rem;
+    font-size: 1rem;
+    background-color: #3e3b92;
+    color: rgb(255, 255, 255);
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn:hover {
+    background-color: #2c297a;
+}
+
+footer {
+    background-color: #f0f0f0;
+    padding: 1rem;
+    text-align: center;
+    font-size: 0.9rem;
+    color: #666;
+}

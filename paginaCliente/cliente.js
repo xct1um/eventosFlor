@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const idUsuario = localStorage.getItem('idUsuario');
+  //const idUsuario = sessionStorage.getItem('idUsuario');
   if (!idUsuario) {
     alert("Sesión expirada. Por favor, inicia sesión.");
     window.location.href = "../ingresar.html";
@@ -40,12 +40,14 @@ document.addEventListener('DOMContentLoaded', () => {
     inputNombre.value = document.getElementById("nombre-usuario").textContent;
     inputApellidos.value = document.getElementById("apellidos-usuario").textContent;
     inputEmail.value = document.getElementById("email-usuario").textContent;
-    inputPassword.value = document.getElementById("password-usuario").textContent;
+    inputPassword.value = document.getElementById("password-usuario-real").textContent;
   });
 
   cerrarModal.addEventListener("click", () => {
     modalEditar.style.display = "none";
   });
+
+
 
   window.addEventListener("click", (e) => {
     const contenidoModal = document.querySelector(".modal-contenido");
@@ -104,6 +106,7 @@ function cargarDatosUsuario(idUsuario) {
       document.getElementById('apellidos-usuario').innerText = usuario.apellidos;
       document.getElementById('email-usuario').innerText = usuario.email;
       document.getElementById('password-usuario').innerText = '*'.repeat(usuario.password.length);
+      document.getElementById('password-usuario-real').innerText = usuario.password;
     })
     .catch(err => console.error("Error al cargar datos del usuario:", err));
 }
@@ -123,14 +126,16 @@ function cargarEventos() {
           <h3>${evento.nombre}</h3>
           <p>${evento.descripcion}</p>
           
-          <button onclick="verEvento(${evento.id})">Más Información</button>
+          <button onclick="verEvento(${evento.idEvento})">Más Información</button>
         `;
         contenedor.appendChild(div);
       });
     })
     .catch(err => console.error("Error al cargar eventos:", err));
 }
-
+function verEvento(idEvento){
+  location.href="../Eventos/evento.html?idEvento="+idEvento;
+  }
 // Función para cargar reservas
 function cargarReservas(idUsuario) {
   fetch(`http://localhost:9003/reserva/idUsuario/${idUsuario}`)
@@ -158,12 +163,13 @@ function cargarReservas(idUsuario) {
         `;
 
         const btnCancelar = document.createElement('button');
-        btnCancelar.textContent = "Cancelar";
+        btnCancelar.textContent = "Eliminar";
         btnCancelar.addEventListener("click", () => cancelarReserva(reserva.idReserva));
         div.appendChild(btnCancelar);
 
         const btnModificar = document.createElement('button');
         btnModificar.textContent = "Modificar";
+        btnModificar.id = "btn-modificar-reserva"
         btnModificar.addEventListener("click", () => abrirModalModificacion(reserva));
         div.appendChild(btnModificar);
 
@@ -175,24 +181,55 @@ function cargarReservas(idUsuario) {
 
 // Modal modificación de reserva
 let reservaActualId = null;
-
+const cerrarModalReserva = document.getElementById("cerrar-modal-reserva");
+cerrarModalReserva.addEventListener("click", () => {
+    document.getElementById("modal-editar-reserva").style.display = "none";
+});
 function abrirModalModificacion(reserva) {
+  console.log(reserva.idReserva);
+  console.log(reserva.cantidad);
   reservaActualId = reserva.idReserva;
-  document.getElementById("cantidad").value = reserva.cantidad;
-  document.getElementById("observaciones").value = reserva.observaciones || '';
-  document.getElementById("modal-modificar").style.display = "block";
+
+  // Modal Editar Datos
+  const modalEditarReserva = document.getElementById("modal-editar-reserva");
+  const btnEditarReserva = document.getElementById("btn-modificar-reserva");
+  modalEditarReserva.style.setProperty("display", "block", "important");
+  // const cerrarModal = document.getElementById("cerrar-modal");
+  // const inputNombre = document.getElementById("input-nombre");
+  // const inputApellidos = document.getElementById("input-apellidos");
+  // const inputEmail = document.getElementById("input-email");
+  // const inputPassword = document.getElementById("input-password");
+  // const formEditar = document.getElementById("form-editar-datos");
+  document.getElementById("modal-editar-reserva").style.setProperty("display", "block", "important");
+
+    btnEditarReserva.onclick = () => {
+  modalEditarReserva.style.setProperty("display", "block", "important");
+
+    modalEditarReserva.style.display = "block";
+    // // // document.getElementById("modal-editar-reserva").style.display = "block";
+    // inputNombre.value = document.getElementById("nombre-usuario").textContent;
+    // inputApellidos.value = document.getElementById("apellidos-usuario").textContent;
+    // inputEmail.value = document.getElementById("email-usuario").textContent;
+    // inputPassword.value = document.getElementById("password-usuario").textContent;
+  };
+
+
+ document.getElementById("cantidad").value = reserva.cantidad;
+ document.getElementById("observaciones").value = reserva.observaciones || '';
+ document.getElementById("modal-modificar").style.display = "block";
 }
 
-document.querySelector(".close").onclick = function () {
-  document.getElementById("modal-modificar").style.display = "none";
+
+document.querySelector(".cerrar-modal").onclick = function () {
+  document.getElementById("modal-editar-reserva").style.display = "none";
 };
 
-document.getElementById("form-modificar").addEventListener("submit", function (e) {
+document.getElementById("form-editar-reserva").addEventListener("submit", function (e) {
   e.preventDefault();
 
   const nuevaCantidad = document.getElementById("cantidad").value;
   const nuevasObservaciones = document.getElementById("observaciones").value;
-
+  console.log("prueb3");
   fetch("http://localhost:9003/reserva/update", {
     method: "PUT",
     headers: {
@@ -232,6 +269,6 @@ function reservarEvento(idEvento) {
 
 // Logout
 function logout() {
-  localStorage.removeItem('idUsuario');
+  sessionStorage.removeItem('idUsuario');
   window.location.href = "../ingresar.html";
 }

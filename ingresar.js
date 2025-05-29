@@ -37,7 +37,7 @@ document.getElementById('registerForm').addEventListener('submit', async functio
     email: email,
     password: password
   };
-    const idUsuario = localStorage.getItem('idUsuario');
+    
     const res = await fetch('http://localhost:9003/usuario/alta', {
       method: 'POST',
       headers: {
@@ -49,7 +49,7 @@ document.getElementById('registerForm').addEventListener('submit', async functio
     if (res.ok) {
   const result = await res.json();
    const idUsuario = result.idUsuario; // 取出 idUsuario
-  localStorage.setItem('idUsuario', idUsuario);
+  sessionStorage.setItem('idUsuario', idUsuario);
   window.location.href = "paginaCliente/cliente.html";
 }
     else{
@@ -92,8 +92,8 @@ loginForm.addEventListener('submit', async function (e) {
       alert('Error de email o contraseña, prueba otra vez');
     } else {
       // Limpiar cualquier ID anterior antes de guardar el nuevo
-      localStorage.removeItem('idUsuario');
-      localStorage.setItem('idUsuario', result);
+      sessionStorage.removeItem('idUsuario');
+      sessionStorage.setItem('idUsuario', result);
 
       // Redirigir al cliente
       window.location.href = "paginaCliente/cliente.html";

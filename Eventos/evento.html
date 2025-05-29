@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Detalles del Evento</title>
+    <link rel="stylesheet" href="evento.css" />
+    <script type="text/javascript" src="../generico.js" defer></script>
+    <script src="evento.js" defer></script>
+</head>
+
+<body>
+
+    <div class="hero">
+        <div class="galeria-principal">
+
+        </div>
+    </div>
+
+    <main>
+        <section class="info">
+            <h2><span id="eventoNombre"></span></h2>
+            <h3><span id="eventoTipo"></span></h2>
+            <ul>
+                <ul>
+                    <li><strong>📍 Lugar:</strong> <span id="eventoDireccion"></span></li>
+                    <li><strong>📅 Fecha:</strong> <span id="eventoFechaInicio"></span></li>
+                    <li><strong>⏰ Duración:</strong> <span id="eventoDuracion"></span> <span
+                            id="eventoUnidadDuracion"></span></li>
+                    <li><strong>👥 Aforo máximo:</strong> <span id="eventoAforo"></span> personas</li>
+                    <li><strong>💵 Precio:</strong> <span id="eventoPrecio"></span> €</li>
+                </ul>
+            </ul>
+        </section>
+
+        <section class="descripcion">
+            <h2>Descripción</h2>
+            <p id="eventoDescripcion"></p>
+        </section>
+
+        <section class="galeria">
+            <h2>Galería</h2>
+        </section>
+
+        <section id="entradas" class="entradas">
+            <h2>Entradas</h2>
+            <p>Selecciona tu fecha y zona para reservar tus entradas.</p>
+            <button class="btn" id="btnReservar">Reservar Ahora</button>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Eventos Florales</p>
+    </footer>
+
+</body>
+
+</html>

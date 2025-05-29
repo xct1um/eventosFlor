@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <title>Panel del Cliente</title>
   <link rel="stylesheet" href="cliente.css">
+  <script type="text/javascript" src="../generico.js"></script>
 </head>
 
 <body>
@@ -51,7 +52,10 @@
         </div>
         <div class="dato">
           <label>Contraseña:</label>
-          <span id="password-usuario">********</span>
+          <span id="password-usuario">*****</span>
+        </div>
+        <div class="dato" style="display:none;">
+          <span id="password-usuario-real">*****</span>
         </div>
         <button id="btn-editar-datos">Editar Datos</button>
 
@@ -85,6 +89,25 @@
       </form>
     </div>
   </div>
+
+  <div id="modal-editar-reserva" class="modal2" style="display: none;">
+    <div class="modal-contenido">
+      <span class="cerrar-modal" id="cerrar-modal-reserva">&times;</span>
+      <h3>Editar Reserva</h3>
+
+      <form id="form-editar-reserva">
+        <label for="cantidad">Cantidad</label>
+        <input type="number" id="cantidad" min="1" required>
+        <label for="observaciones">Observaciones</label>
+        <textarea id="observaciones" rows="3"></textarea>
+
+        <button type="submit">Guardar Cambios</button>
+      </form>
+    </div>
+  </div>
+
+
+
   <script src="cliente.js"></script>
 </body>
 
