@@ -37,7 +37,7 @@ document.getElementById('registerForm').addEventListener('submit', async functio
     email: email,
     password: password
   };
-  
+    const idUsuario = localStorage.getItem('idUsuario');
     const res = await fetch('http://localhost:9003/usuario/alta', {
       method: 'POST',
       headers: {
@@ -47,17 +47,16 @@ document.getElementById('registerForm').addEventListener('submit', async functio
     });
 
     if (res.ok) {
-      const result = await res.json();
-      alert('Registro exito');
-      
-      window.location.href = "paginaCliente/page.html"//este no sunciona
-     // this.reset();
-    }
-
+  const result = await res.json();
+   const idUsuario = result.idUsuario; // 取出 idUsuario
+  localStorage.setItem('idUsuario', idUsuario);
+  window.location.href = "paginaCliente/cliente.html";
+}
+    else{
     const errorData = await res.json();
       alert('Error: ' + (errorData.message || res.statusText));
       return;
-
+    }
   
 });
 

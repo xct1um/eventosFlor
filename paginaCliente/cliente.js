@@ -58,7 +58,7 @@ function cargarEventos() {
         div.innerHTML = `
           <h3>${evento.nombre}</h3>
           <p>${evento.descripcion}</p>
-          <button onclick="reservarEvento(${evento.id})">Reservar</button>
+          <button onclick="reservarEvento(${evento.id})">Más Información</button>
         `;
         contenedor.appendChild(div);
       });
