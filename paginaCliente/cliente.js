@@ -118,7 +118,6 @@ function cargarEventos() {
     .then(eventos => {
       const contenedor = document.getElementById('lista-eventos');
       contenedor.innerHTML = '';
-
       eventos.forEach(evento => {
         const div = document.createElement('div');
         div.classList.add('evento');
@@ -148,7 +147,7 @@ function cargarReservas(idUsuario) {
         contenedor.innerHTML = '<p>No tienes reservas aún.</p>';
         return;
       }
-
+      console.log("Respuesta de reservas:", reservas);
       reservas.forEach(reserva => {
         const div = document.createElement('div');
         div.classList.add('reserva');
