@@ -10,6 +10,19 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Eventos de Flores</title>
+  <link rel="stylesheet" href="proyecto.css">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
     href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@400..700&family=Lexend:wght@100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
     rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Faculty+Glyphic&display=swap" rel="stylesheet">
@@ -23,40 +36,27 @@
       <div id="contenedor-nav">
         <!--Menú-->
         <div id="botones-izquierda">
-          <div id="icono-menu">
+          <!-- Logo -->
+          <div id="logo-container">
             <a href="#">
-              <div class="svg-container">
-                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M20 7L4 7" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round"></path>
-                  <path d="M15 12L4 12" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round"></path>
-                  <path d="M9 17H4" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round"></path>
-                </svg>
-              </div>
+              <img src="Resources/logo.png" alt="Logo Eventos de Flores" id="logo">
             </a>
-
-            <ul class="submenu">
-              <li><a href="#">Precio</a></li>
-              <li><a href="#">Tempolar</a></li>
-              <li><a href="#">Pais</a></li>
-              <li><a href="#">Tipo</a></li>
-            </ul>
           </div>
-          <!--Acceso Rápido-->
+
+        
+          <!-- 菜单 -->
           <div class="pp">
             <ul class="acceso-rapido">
               <li><a href="#home"><span class="letra">Inicio</span></a></li>
               <li><a href="#recommended"><span class="letra">Eventos</span></a></li>
-              <li><a href="#cualidades"><span class="letra">Cualidades</span></a></li>
-              <li><a href="#contacto"><span class="letra">Contacto</span></a></li>
-              <div class="estilo"></div>
+              <li><a href="#cualidades"><span class="letra">Informaciones</span></a></li>
+              <li><a href="#hero-slides"><span class="letra">Tipos</span></a></li>
             </ul>
           </div>
+        </div>
 
-        </div>
-        <!--Logo-->
-        <div id="logo-container">
-          <img src="Resources\logo.png" alt="Logo Eventos de Flores" id="logo">
-        </div>
+        <div id="nombre">Aura Floral</div>
+        
         <!--Botones CTA-->
         <div class="botones-derecha">
           <button id="login" onclick="location.href = 'ingresar.html'" >
@@ -114,7 +114,7 @@
           </svg>
         </span>
         <input type="text" name="q" placeholder="Buscar eventos cerca a ti" />
-        <button type="button" id="boton-busqueda">Buscar</button>
+        <button type="submit" id="boton-busqueda">Buscar</button>
       </form>
     </div>
     <a href="#recommended" class="scroll-down">
@@ -139,10 +139,10 @@
       <div class="column">
         <img src="Resources/🇰🇷接下来的济州岛💐今年别再错过绣球花海_1_哒哒旅行物语_来自小红书网页版.jpg" alt="Evento 1" class="img">
         <div class="titulo-evento">
-          <div class="top-text">Top Info</div>
+          
           <div class="center-text">
-            <h2 class="fp">Evento 1</h2>
-            <p>Experience the best of the Damai Spa</p>
+            <h3 class="fp">Festival de Hortensias de Hueree</h3>
+            <p>Colorido jardín natural con miles de hortensias en plena floración.</p>
           </div>
           <button class="bottom-bt">More info</button>
         </div>
@@ -150,10 +150,10 @@
       <div class="column">
         <img src="Resources/🌸东京樱花季｜5大绝美赏樱地全攻略_1_环球旅行小分队_来自小红书网页版.jpg" alt="Evento 2" class="img">
         <div class="titulo-evento">
-          <div class="top-text">Top Info</div>
+          
           <div class="center-text">
-            <h2 class="fp">Evento 2</h2>
-            <p>Experience the best of the Damai Spa</p>
+            <h3 class="fp">Festival de los Cerezos en Flor de Ueno</h3>
+            <p>Miles de cerezos florecen cada primavera en el parque Ueno.</p>
           </div>
           <button class="bottom-bt">More info</button>
         </div>
@@ -161,23 +161,23 @@
       <div class="column">
         <img src="Resources/3BS69nvvIzVoxN0.thumb.1000_0.png" alt="Evento 3" class="img">
         <div class="titulo-evento">
-          <div class="top-text">More info</div>
+          
           <div class="center-text">
-            <h2 class="fp">Evento 3</h2>
-            <p>Experience the best of the Damai Spa</p>
+            <h2 class="fp">Keukenhof – El Jardín de Europa</h2>
+            <p>Millones de tulipanes florecen en un jardín primaveral espectacular.</p>
           </div>
           <button class="bottom-bt">More info</button>
         </div>
       </div>
     </div>
   </section>
-  <!--Grid con cualidades-->
+  <!--Grid con cualidades 1-->
   <section id="cualidades">
     <div class="cualidades-container">
 
       <div class="item item1">
-        <h2 class="fp">Better by design</h2>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+        <h2 class="fp">State Rose & Garden Show</h2>
+        <p>Festival gratuito que celebra la belleza de las rosas con talleres, exhibiciones y actividades familiares.</p>
       </div>
       <div class="item item2">
         <img src="Resources/20210727095311_ddeea.jpeg" alt="cual 1">
@@ -187,13 +187,113 @@
         <img src="Resources/ruta_lavanda_provenza_vueling.jpg" alt="cual 2">
       </div>
       <div class="item item4">
-        <h2 class="fp">Better by design</h2>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+        <h2 class="fp">Abadía de Sénanque</h2>
+        <p>Campo de lavanda púrpura frente a abadía medieval de piedra, símbolo de Provenza.</p>
       </div>
 
+    </div>
+  </section>
+
+  <!-- Tipo con card-->
+  <section id="tipo">
+    <h1 class="title">Tipo por temporada</h1>
+    <div class="container">
+      <div class="card-wrap" data-image="Resources/想分享给你的春天是彩色的_1_半枝桃🍑🍑🍑_来自小红书网页版.jpg">
+        <div class="card">
+          <div class="card-bg"></div>
+          <div class="card-info">
+            <h1>Primavera</h1>
+            <p>La primavera es la temporada reina de la floración. Los campos y jardines se llenan de color.</p>
+          </div>
+        </div>
+      </div>
+      <div class="card-wrap" data-image="Resources/5.30 实拍live！夏天的新疆美到next level‼️_1_鹿卡Luka_来自小红书网页版.jpg">
+        <div class="card">
+          <div class="card-bg"></div>
+          <div class="card-info">
+            <h1>Verano</h1>
+            <p>El verano es sinónimo de exuberancia. Las flores son grandes, vibrantes y resistentes al sol.</p>
+          </div>
+        </div>
+      </div>
+      <div class="card-wrap" data-image="Resources/奥森的秋日莫奈花园 10.10实拍live图_1_桉鱼Astra_来自小红书网页版.jpg">
+        <div class="card">
+          <div class="card-bg"></div>
+          <div class="card-info">
+            <h1>Otoño</h1>
+            <p>El otoño es melancólico y cálido en tonos. Es una estación ideal para jardines botánicos con paisajismo de colores tierra.</p>
+          </div>
+        </div>
+      </div>
+      <div class="card-wrap" data-image="Resources/冬天的梅花拍照也太好看了_5_太上老君の炼丹修图炉_来自小红书网页版.jpg">
+        <div class="card">
+          <div class="card-bg"></div>
+          <div class="card-info">
+            <h1>Invierno</h1>
+            <p>El invierno es silencioso, pero no está sin vida. Algunas flores resistentes al frío brotan entre la nieve o en climas templados.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    document.querySelectorAll('.card-wrap').forEach(cardWrap => {
+  const card = cardWrap.querySelector('.card');
+  const cardBg = cardWrap.querySelector('.card-bg');
+  const cardInfo = cardWrap.querySelector('.card-info');
+
+  // Asignar imagen desde el atributo data-image
+  const imgUrl = cardWrap.getAttribute('data-image');
+  cardBg.style.backgroundImage = `url('${imgUrl}')`;
+
+  let width, height;
+
+  function updateSize() {
+    width = cardWrap.offsetWidth;
+    height = cardWrap.offsetHeight;
+  }
+
+  function handleMouseMove(e) {
+    const rect = cardWrap.getBoundingClientRect();
+    const mouseX = e.clientX - rect.left - width / 2;
+    const mouseY = e.clientY - rect.top - height / 2;
+
+    const mousePX = mouseX / width;
+    const mousePY = mouseY / height;
+
+    const rX = mousePX * 30;
+    const rY = mousePY * -30;
+    card.style.transform = `rotateY(${rX}deg) rotateX(${rY}deg)`;
+
+    const tX = mousePX * -40;
+    const tY = mousePY * -40;
+    cardBg.style.transform = `translateX(${tX}px) translateY(${tY}px)`;
+
+    cardInfo.classList.add('active');
+  }
+
+  function handleMouseLeave() {
+    card.style.transform = `rotateY(0deg) rotateX(0deg)`;
+    cardBg.style.transform = `translateX(0px) translateY(0px)`;
+    cardInfo.classList.remove('active');
+  }
+
+  window.addEventListener('resize', updateSize);
+  updateSize();
+
+  cardWrap.addEventListener('mousemove', handleMouseMove);
+  cardWrap.addEventListener('mouseleave', handleMouseLeave);
+});
+  </script>
+
+  <!--Grid con cualidades 2-->
+  <section id="cualidades">
+    <div class="cualidades-container">
+
       <div class="item item5">
-        <h2 class="fp">Better by design</h2>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+        <h2 class="fp">Parque de la Flor de Ciruelo de Nanjing</h2>
+        <p>Montaña con miles de ciruelos en flor, fragancia dulce y belleza invernal en Nanjing.</p>
       </div>
       <div class="item item6">
         <img src="Resources/航拍视角下的明孝陵梅花山，美到失语！_2_BLan_来自小红书网页版.jpg" alt="cual 1">
@@ -203,16 +303,168 @@
         <img src="Resources/🌸宁波植物园｜闯入莫奈花园的油画世界！_1_每天睡到自然醒_来自小红书网页版.jpg" alt="cual 2">
       </div>
       <div class="item item8">
-        <h2 class="fp">Better by design</h2>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+        <h2 class="fp">Adelman Peony Gardens</h2>
+        <p>Treinta acres de peonías en flor, con eventos y picnic para disfrutar en primavera.</p>
       </div>
 
     </div>
   </section>
+  <!-- tipo de flor -->
+  <section id="hero-slides">
+    <div id="slides-cont">
+      <button class="button" id="next"></button>
+      <button class="button" id="prev"></button>
+      <div id="slides">
+        <div class="slide" style="background-image: url(Resources/樱花仙境～湖光山色间的粉色绮梦_1_随心分享～_来自小红书网页版.jpg)">
+          <div class="number">01</div>
+          <div class="body">
+            <div class="location">>>>>>>>>>>>></div>
+            <div class="headline">Sakura</div>
+            <button class="link">Ver info</button>
+          </div>
+        </div>
+        <div class="slide" style="background-image: url(Resources/我拍到了世界最美10棵树之一的160岁紫藤💜_5_多啦C梦的口袋_来自小红书网页版.jpg)">
+          <div class="number">02</div>
+          <div class="body">
+            <div class="location">>>>>>>>>>>>></div>
+            <div class="headline">Wisteria</div>
+            <button class="link">Ver info</button>
+          </div>
+        </div>
+        <div class="slide" style="background-image: url(Resources/荷兰库肯霍夫郁金香超全攻略｜2025限时开放_1_WhaleTour远海定制旅行_来自小红书网页版.jpg)">
+          <div class="number">03</div>
+          <div class="body">
+            <div class="location">>>>>>>>>>>>></div>
+            <div class="headline">Tulipán</div>
+            <button class="link">Ver info</button>
+          </div>
+        </div>
+        <div class="slide" style="background-image: url(Resources/济州岛这家玫瑰花园的审美真的好到没边儿！_8_金升·土拨鼠旅行定制_来自小红书网页版.jpg)">
+          <div class="number">04</div>
+          <div class="body">
+            <div class="location">>>>>>>>>>>>></div>
+            <div class="headline">Rosa</div>
+            <button class="link">Ver info</button>
+          </div>
+        </div>
+        <div class="slide" style="background-image: url(Resources/踩着上海国际花展的尾巴逛逛上海植物园_1_甜橙在打怪🍊_来自小红书网页版.jpg)">
+          <div class="number">05</div>
+          <div class="body">
+            <div class="location">>>>>>>>>>>>></div>
+            <div class="headline">Poenía</div>
+            <button class="link">Ver info</button>
+          </div>
+        </div>
+        <div class="slide" style="background-image: url(Resources/墨尔本皇家植物园｜当我走进莫奈的花园_4_拍摄小澳_来自小红书网页版.jpg)">
+          <div class="number">06</div>
+          <div class="body">
+            <div class="location">>>>>>>>>>>>></div>
+            <div class="headline">Hortensia</div>
+            <button class="link">Ver info</button>
+          </div>
+        </div>
+        <div class="slide" style="background-image: url(Resources/邂逅普罗旺斯般的浪漫💕_4_彼岸半夏6843_来自小红书网页版.jpg)">
+          <div class="number">07</div>
+          <div class="body">
+            <div class="location">>>>>>>>>>>>></div>
+            <div class="headline">Lavanda</div>
+            <button class="link">Ver info</button>
+          </div>
+        </div>
+      </div>
+      <div id="next-catch"></div>
+      <div id="prev-catch"></div>
+    </div>
+  </section>
+  
+  <script>
+    let hero = document.getElementById('hero-slides');
+let menu = document.getElementById('menu');
+let slides = document.getElementById('slides');
+let dribbble = document.getElementById('dribbble');
+let next = [ 'next', 'next-catch' ].map(n => document.getElementById(n));
+let prev = [ 'prev', 'prev-catch' ].map(n => document.getElementById(n));
+let slideChildren = slides.children;
+let slideCount = slides.children.length;
+let currentlyDemoing = false;
+let currentPage = 0;
+let slidesPerPage = () => window.innerWidth > 1700 ? 4 : window.innerWidth > 1200 ? 3 : 2;
+let maxPageCount = () => slideCount / slidesPerPage() - 1;
 
-  <!-- Mapa -->
-  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3048.458391766158!2d-3.703790684606287!3d40.41677597936485!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd4229972a5a2e49%3A0xe57e6a5f6f4c1c5d!2sPuerta%20del%20Sol!5e0!3m2!1ses!2ses!4v1615271837292!5m2!1ses!2ses" style="width: 100%; height: 500px;" frameborder="0"></iframe>
+function goToPage(pageNumber = 0) {
+  currentPage = Math.min(maxPageCount(), Math.max(0, pageNumber));
+  console.log(currentPage);
+  hero.style.setProperty('--page', currentPage);
+}
 
+function sleep(time) {
+  return new Promise(res => setTimeout(res, time));
+}
+
+function hoverSlide(index) {
+  index in slideChildren &&
+    slideChildren[index].classList.add('hover');
+}
+
+function unhoverSlide(index) {
+  index in slideChildren &&
+    slideChildren[index].classList.remove('hover');
+}
+
+async function demo() {
+  if(currentlyDemoing) {
+    return;
+  }
+  currentlyDemoing = true;
+  if(currentPage !== 0) {
+    goToPage(0);
+    await sleep(800);
+  }
+  let slides = slidesPerPage();
+  let pageSeq_ = { 2: [ 1, 2, 1 ], 3: [ 1, 2, 1 / 3 ], 4: [ 1, 1, 0 ] };
+  let pageSeq = pageSeq_[slides] || pageSeq_[4];
+  let slideSeq_ = { 2: [ 2, 4, 3 ], 3: [ 3, 6, 2 ], 4: [ 3, 6, 2 ] };
+  let slideSeq = slideSeq_[slides] || slideSeq_[2];
+  await sleep(300);
+  goToPage(pageSeq[0]);
+  await sleep(500);
+  hoverSlide(slideSeq[0]);
+  await sleep(1200);
+  goToPage(pageSeq[1]);
+  dribbble.classList.add('hover');
+  unhoverSlide(slideSeq[0]);
+  await sleep(500);
+  hoverSlide(slideSeq[1]);
+  await sleep(1200);
+  goToPage(pageSeq[2]);
+  unhoverSlide(slideSeq[1]);
+  await sleep(300);
+  hoverSlide(slideSeq[2]);
+  await sleep(1600);
+  goToPage(0);
+  unhoverSlide(slideSeq[2]);
+  dribbble.classList.remove('hover');
+  currentlyDemoing = false;
+}
+
+next.forEach(n => n.addEventListener('click', () => !currentlyDemoing && goToPage(currentPage + 1)));
+prev.forEach(n => n.addEventListener('click', () => !currentlyDemoing && goToPage(currentPage - 1)));
+menu.addEventListener('click', demo);
+
+sleep(100).then(demo);
+
+// window.addEventListener('resize', () => {
+  // console.log(document.body.style.getPropertyValue('--slide-per-page'));
+// });
+
+/* requestAnimationFrame */
+  </script>
+  
+  <script>
+    document.getElementById("boton-busqueda").addEventListener("click", () => {
+  window.location.href = '..ingresar.html';
+ });
+  </script>
 
   <footer id="main-footer">
     <div class="footer-container">

@@ -38,9 +38,7 @@ function renderBusqueda(resultadosJSON) {
   }
 
 }
-document.getElementById("boton-busqueda").addEventListener("click", () => {
-  location.href = 'ingresar.html';
-});
+
 document.addEventListener("DOMContentLoaded", async () => {
   const data = await buscar();
   renderBusqueda(data);
@@ -317,5 +315,5 @@ function cerrarModalReservas() {
 //const idUsuario = sessionStorage.getItem('idUsuario');
 function logout() {
   sessionStorage.removeItem('idUsuario');
-  window.location.href = "../ingresar.html";
+  window.location.href = "./ingresar.html";
 }
